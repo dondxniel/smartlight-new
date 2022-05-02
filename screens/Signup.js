@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Card, Heading, Text, Button } from 'native-base';
+import { View, Card, Heading, Text, Button, KeyboardAvoidingView } from 'native-base';
 import { ImageBackground } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
@@ -9,31 +9,31 @@ import OAuthLinks from '../components/OAuthLinks';
 import rnStyles from '../style/rn-styles';
 import nbStyles from '../style/nb-styles';
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   const login = () => {
     navigation.navigate('login');
   }
   return (
-    <View 
-      bg='primary.100'
-      h={height}
-    >
-      <ImageBackground
-        source={require('../assets/bg1.png')}
-        style={{...rnStyles.imageBackground}}
-      />
-      <View 
-        style={{...rnStyles.backgroundOverlay}}
+    <KeyboardAwareScrollView>
+      <View
+        bg='primary.100'
+        h={height}
       >
-        <Card 
-          style={{
-            ...rnStyles.formCard(1.1),
-            paddingBottom: 120
-          }}
+        <ImageBackground
+          source={require('../assets/bg1.png')}
+          style={{ ...rnStyles.imageBackground }}
+        />
+        <View
+          style={{ ...rnStyles.backgroundOverlay }}
         >
-          <KeyboardAwareScrollView>
+          <Card
+            style={{
+              ...rnStyles.formCard(1.1),
+              paddingBottom: 120
+            }}
+          >
             <Heading>Create Account</Heading>
-            <View 
+            <View
               mt={10}
             >
               <SignupForm navigation={navigation} />
@@ -42,8 +42,8 @@ const Signup = ({navigation}) => {
                 {...nbStyles.authAlt}
               >
                 <Text>Already joined?</Text>
-                <Text style={{paddingLeft: 9}}>|</Text>
-                <Button 
+                <Text style={{ paddingLeft: 9 }}>|</Text>
+                <Button
                   {...nbStyles.altButton}
                   onPress={login}
                 >
@@ -51,12 +51,12 @@ const Signup = ({navigation}) => {
                 </Button>
               </View>
             </View>
-          </KeyboardAwareScrollView>
-        </Card>
+          </Card>
+
+        </View>
 
       </View>
-
-    </View>
+    </KeyboardAwareScrollView>
   )
 }
 

@@ -10,16 +10,7 @@ const Root = () => {
     return (
         <NavigationContainer>
             <RootStack>
-                {/* 3 */}
-                <Stack.Screen
-                    options={{
-                        headerShown: false
-                    }}
-                    name="signup"
-                >
-                    {props => <SignupScreen {...props} />}
-                </Stack.Screen>
-                {/* 1 */}
+               {/* 1 */}
                 <Stack.Screen
                     options={{
                         headerShown: false
@@ -27,6 +18,15 @@ const Root = () => {
                     name="onboarding"
                 >
                     {props => <OnboardingScreen {...props} />}
+                </Stack.Screen>
+                {/* 3 */}
+                 <Stack.Screen
+                    options={{
+                        headerShown: false
+                    }}
+                    name="signup"
+                >
+                    {props => <SignupScreen {...props} />}
                 </Stack.Screen>
                 {/* 4 */}
                 <Stack.Screen
