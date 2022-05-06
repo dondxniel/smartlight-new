@@ -7,13 +7,14 @@ import LoginForm from '../components/LoginForm';
 import OAuthLinks from '../components/OAuthLinks';
 import rnStyles from '../style/rn-styles';
 import nbStyles from '../style/nb-styles';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const Login = ({ navigation }) => {
   const createAccount = () => {
     navigation.navigate('signup');
   }
   return (
-    <KeyboardAvoidingView
+    <KeyboardAwareScrollView
       behavior={'height'}
     >
 
@@ -58,7 +59,7 @@ const Login = ({ navigation }) => {
 
       </View>
 
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
   )
 }
 

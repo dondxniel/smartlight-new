@@ -36,8 +36,15 @@ const VerifyPhoneNumber = () => {
       onSubmit={values => {
         console.log(values);
       }}
+      validate={values => {
+        const errors = {};
+
+        if (!values.phonenumber) { errors.phonenumber = 'Phone Required!' }
+
+        return errors;
+      }}
     >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
+      {({ errors, touched, handleChange, handleBlur, handleSubmit, values }) => (
         <View
           style={{
             marginBottom: 200
@@ -47,6 +54,8 @@ const VerifyPhoneNumber = () => {
             <Input
               {...inputStyle}
               type='tel'
+              onChangeText={handleChange('phonenumber')}
+              onBlur={handleBlur('phonenumber')}
               placeholder='Phonenumber'
               variant='rounded'
               keyboardType='numeric'
@@ -69,6 +78,7 @@ const VerifyPhoneNumber = () => {
                 </Select>
               }
             />
+            <Text>{errors.phonenumber && touched.phonenumber && errors.phonenumber}</Text>
             <Button
               variant={'unstyled'}
               _text={{
@@ -87,12 +97,12 @@ const VerifyPhoneNumber = () => {
               <Input {...inputGroupStyle} />
             </HStack>
             <Button
-              width={'full'}
-              borderRadius={'10px'}
-              marginY={5}
+              p={4}
+              rounded={'2xl'}
+              marginY={4}
               onPress={handleSubmit}
             >
-              <Text marginY={2} fontWeight={900} color={'#fff'}>Finish</Text>
+              <Text fontWeight={900} color={'#fff'}>Finish</Text>
             </Button>
           </FormControl>
         </View>

@@ -14,7 +14,7 @@ const Signup = ({ navigation }) => {
     navigation.navigate('login');
   }
   return (
-    <KeyboardAwareScrollView>
+    <KeyboardAwareScrollView behavior='height'>
       <View
         bg='primary.100'
         h={height}

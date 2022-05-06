@@ -11,6 +11,7 @@ import SignupScreen from '../screens/Signup'
 import VerifyPhoneNumberScreen from '../screens/VerifyPhoneNumber'
 import ForgotPassword from '../screens/ForgotPassword'
 import Otp from '../screens/Otp'
+import NewPassword from '../screens/NewPassword'
 
 
 const Root = () => {
@@ -61,6 +62,10 @@ const Root = () => {
         </Stack.Screen>
         <Stack.Screen options={{ headerShown: false, animation: 'slide_from_right' }} name='otp'>
           {props => <Otp {...props} />}
+        </Stack.Screen>
+
+        <Stack.Screen options={{ headerShown: false, animation: 'slide_from_left' }} name='new_password'>
+          {props => <NewPassword {...props} />}
         </Stack.Screen>
 
 

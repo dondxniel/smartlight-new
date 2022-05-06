@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { View, FormControl, Input, Button, Text } from 'native-base';
+import { View, FormControl, Input, Button, Text, useToast } from 'native-base';
 import { Formik } from 'formik';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import rnStyles from '../style/rn-styles';
 import nbStyles from '../style/nb-styles';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false)
   const navigation = useNavigation()
+  const toast = useToast()
   return (
     <View>
       <Formik
@@ -16,25 +16,49 @@ const LoginForm = () => {
         onSubmit={values => {
           console.log(values);
         }}
-      >
-        {({ handleChange, handleBlur, handleSubmit, values }) => (
+        validateOnChange={false}
+        validate={values => {
+          const errors = {};
+
+
+
+          if (!values.email) {
+
+            errors.email = toast.show({ render: () => <Text {...nbStyles.toastErrorStyle}>Email required!</Text>, placement: 'bottom' });
+
+          } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+
+            errors.email = toast.show({ render: () => <Text {...nbStyles.toastErrorStyle}>Invalid email address.</Text>, placement: 'bottom' });
+
+          } if (!values.password) {
+
+            errors.password = toast.show({ render: () => <Text {...nbStyles.toastErrorStyle}>Password required!</Text>, placement: 'bottom' });
+          }
+          return errors;
+        }}      >
+        {({ errors, touched, handleSubmit, handleChange, handleBlur, values }) => (
           <View>
             <FormControl>
               <Input
                 {...nbStyles.inputStyle}
                 type='email'
+                onBlur={handleBlur('email')}
+                onChangeText={handleChange('email')}
                 placeholder='Email'
                 variant='rounded'
                 name='email'
-                id='email'
+
                 value={values.email}
               />
+              <Text>{errors.email && touched.email}</Text>
             </FormControl>
             <FormControl>
               <Input
                 {...nbStyles.inputStyle}
                 type={showPassword ? 'text' : 'password'}
                 placeholder='Password'
+                onChangeText={handleChange('password')}
+                value={values.password}
                 variant='rounded'
                 InputRightElement={
                   <Icon
@@ -46,6 +70,7 @@ const LoginForm = () => {
                   />
                 }
               />
+              <Text>{errors.password && touched.password}</Text>
             </FormControl>
             <FormControl
               style={{
@@ -64,11 +89,12 @@ const LoginForm = () => {
             >
               <Button
                 width={'full'}
-                borderRadius={'10px'}
-                marginY={5}
+                rounded={'2xl'}
+                p={4}
+                marginY={4}
                 onPress={handleSubmit}
               >
-                <Text marginY={2} fontWeight={900} color={'#fff'}>Login</Text>
+                <Text fontWeight={900} color={'#fff'}>Login</Text>
               </Button>
             </FormControl>
           </View>

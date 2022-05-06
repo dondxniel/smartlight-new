@@ -4,6 +4,7 @@ import { Button, FormControl, HStack, Input, Text } from 'native-base'
 
 //components
 import FormsWidget from '../components/FormsWidget'
+import { useNavigation } from '@react-navigation/native'
 
 const inputGroupStyle = {
   bgColor: '#fafafa',
@@ -25,24 +26,27 @@ const inputGroupStyle = {
 }
 
 export default function() {
+  const navigation = useNavigation();
   return (
     <FormsWidget heading='Enter OTP' description={`An OTP has been sent to your email. \'w Enter OTP below to reset Password`}>
-      <Formik initialValues={{ 'uno': '', 'due': '', 'tre': '', 'quattro': '' }}>{
-        ({ values, handleChange }) => (
-          <FormControl>
-            <HStack space={'lg'}>
-              <Input nativeID='uno' value={values.uno} onChange={handleChange} {...inputGroupStyle} />
-              <Input nativeID='due' value={values.due} onChange={handleChange} {...inputGroupStyle} />
-              <Input nativeID='tre' value={values.tre} onChange={handleChange} {...inputGroupStyle} />
-              <Input nativeID='quattro' value={values.quattro} onChange={handleChange} {...inputGroupStyle} />
-            </HStack>
-            <Button mt={4} rounded={'2xl'} p={5}>
-              <Text fontWeight={'black'} letterSpacing={0.5} color={'trueGray.50'}>Submit</Text>
-            </Button>
+      <Formik onSubmit={() => {
+        if (true) navigation.navigate('new_password')
+      }} initialValues={{ 'uno': '', 'due': '', 'tre': '', 'quattro': '' }}>{
+          ({ values, handleSubmit }) => (
+            <FormControl>
+              <HStack space={'lg'}>
+                <Input id='uno' value={values.uno}  {...inputGroupStyle} />
+                <Input id='due' value={values.due}  {...inputGroupStyle} />
+                <Input id='tre' value={values.tre}  {...inputGroupStyle} />
+                <Input id='quattro' value={values.quattro}  {...inputGroupStyle} />
+              </HStack>
+              <Button onPress={handleSubmit} mt={4} rounded={'2xl'} p={4}>
+                <Text fontWeight={'black'} letterSpacing={0.5} color={'trueGray.50'}>Submit</Text>
+              </Button>
 
-          </FormControl>
-        )
-      }</Formik>
+            </FormControl>
+          )
+        }</Formik>
     </FormsWidget>
   )
 }

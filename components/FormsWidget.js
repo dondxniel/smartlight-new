@@ -9,24 +9,19 @@ import { useNavigation } from '@react-navigation/native';
 import { height } from '../constants/dims'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const FormsWidget = ({ btnTitle, children, description, heading }) => {
+const FormsWidget = ({ children, description, heading }) => {
   const navigation = useNavigation();
   return (
-    <KeyboardAwareScrollView>
-      <View h={height} bg='primary.100'>
-        <ImageBackground
-          source={require('../assets/bg3.png')}
-          style={{
-            height: height / 2,
-            backgroundPosition: 'top',
-            backgroundSize: '50%',
-            zIndex: -2,
-            position: 'relative',
-            top: 0
-          }}
-        />
+    <KeyboardAwareScrollView resetScrollToCoords={{ x: 0, y: 0 }}>
+      <ImageBackground
+        source={require('../assets/bg-new-password.png')}
+        style={{
+          height,
+          maxHeight: height,
+          flex: 1,
+          position: 'relative',
+        }}>
         <Button
-          zIndex={2}
           rounded={'lg'}
           width={50} bg={'trueGray.50'}
           onPress={() => navigation.goBack()}
@@ -41,41 +36,37 @@ const FormsWidget = ({ btnTitle, children, description, heading }) => {
 
           <MDIcon size={20} style={{ color: 'black', padding: 5 }} name='arrow-back-ios' />
         </Button>
-        <View
+
+        <Card
+          height={'full'}
           style={{
             zIndex: 1,
             position: 'absolute',
             left: 0,
-            right: 0
+            right: 0,
+            bottom: -height / 2,
+            backgroundColor: '#fff',
+            marginLeft: 7,
+            marginRight: 7,
+            borderRadius: 20,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            paddingTop: 30,
+            paddingLeft: 25,
+            paddingRight: 25
           }}
         >
-          <Card
-            height={height}
-            style={{
-              backgroundColor: '#fff',
-              marginTop: height / 2.1,
-              marginLeft: 7,
-              marginRight: 7,
-              borderRadius: 20,
-              borderBottomLeftRadius: 0,
-              borderBottomRightRadius: 0,
-              paddingTop: 30,
-              paddingLeft: 25,
-              paddingRight: 25
-            }}
-          >
 
-            <Heading mb={4}>{heading}</Heading>
-            <Text>{description}</Text>
-            <Box my={4}>{children}</Box>
-          </Card>
+          <Heading mb={4}>{heading}</Heading>
+          <Text>{description}</Text>
+          <Box my={4}>{children}</Box>
+        </Card>
 
-        </View>
 
-      </View>
+      </ImageBackground >
     </KeyboardAwareScrollView>
   )
 
 }
 
-export default FormsWidget;
+export default React.memo(FormsWidget);
