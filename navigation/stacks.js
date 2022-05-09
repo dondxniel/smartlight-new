@@ -3,8 +3,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export const Stack = createNativeStackNavigator();
 
-const RootStack = ({children}) => {
-    return <Stack.Navigator>
+const RootStack = ({children}, props) => {
+    return <Stack.Navigator {...props}>
         {children}
     </Stack.Navigator>
 }

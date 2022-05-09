@@ -7,56 +7,59 @@ import LoginForm from '../components/LoginForm';
 import OAuthLinks from '../components/OAuthLinks';
 import rnStyles from '../style/rn-styles';
 import nbStyles from '../style/nb-styles';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
   const createAccount = () => {
     navigation.navigate('signup');
   }
   return (
-    <View 
-      bg='primary.100'
-      h={height}
+    <KeyboardAwareScrollView
+      behavior={'height'}
     >
-      <ImageBackground
-        source={require('../assets/bg1.png')}
-        style={{...rnStyles.imageBackground}}
-      />
-      <View 
-        style={{...rnStyles.backgroundOverlay}}
+
+      <View
+        bg='primary.100'
+        h={height}
       >
+        <ImageBackground
+          source={require('../assets/bg1.png')}
+          style={{ ...rnStyles.imageBackground }}
+        />
+        <View
+          style={{ ...rnStyles.backgroundOverlay }}
+        >
           <View flex={1} />
-          <KeyboardAvoidingView 
-            behavior={'height'}
+          <Card
+            style={{ ...rnStyles.formCard(1.22) }}
           >
-          <Card 
-            style={{...rnStyles.formCard(1.22)}}
-          >
-              <Heading>Welcome back!</Heading>
-              <View 
-                mt={10}
-                paddingBottom= {120}
+            <Heading>Welcome back!</Heading>
+            <View
+              mt={10}
+              paddingBottom={120}
+            >
+              <LoginForm />
+              <OAuthLinks />
+              <View
+                {...nbStyles.authAlt}
               >
-                <LoginForm />
-                <OAuthLinks />
-                <View
-                  {...nbStyles.authAlt}
+                <Text>Are you new?</Text>
+                <Text style={{ paddingLeft: 9 }}>|</Text>
+                <Button
+                  {...nbStyles.altButton}
+                  onPress={createAccount}
                 >
-                  <Text>Are you new?</Text>
-                  <Text style={{paddingLeft: 9}}>|</Text>
-                  <Button 
-                    {...nbStyles.altButton}
-                    onPress={createAccount}
-                  >
-                    Sign up now 
-                  </Button>
-                </View>
+                  Sign up now
+                </Button>
               </View>
+            </View>
           </Card>
-          </KeyboardAvoidingView>
+
+        </View>
 
       </View>
 
-    </View>
+    </KeyboardAwareScrollView>
   )
 }
 
