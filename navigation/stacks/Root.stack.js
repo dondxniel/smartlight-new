@@ -1,7 +1,11 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+//navigations
 import BoardingStack from "./Boarding.stack";
-import DashboardStack from "./Dashboard.stack";
+
+//custom navigations
+import RootTab from "../customBottomTab/RootTab";
 
 export const Stack = createNativeStackNavigator();
 
@@ -14,7 +18,7 @@ const RootStack = (props) => {
       />
       <Stack.Screen
         name="_dashboard"
-        children={(props) => <DashboardStack {...props} />}
+        children={(props) => <RootTab {...props} />}
       />
     </Stack.Navigator>
   );
