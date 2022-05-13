@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Entypo";
 
 export const MeterTabIcon = () => {
   return (
-    <Center mt={-23}>
+    <Center mt={-18}>
       <Card
         bg={"primary.100"}
         shadow={0}

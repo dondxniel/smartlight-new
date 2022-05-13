@@ -49,7 +49,7 @@ function TabNavigator({
             shadowColor: "transparent",
             backfaceVisibility: "hidden",
           },
-          tabBarStyle,
+          tabBarStyle
         ]}
       >
         {state.routes.map((route, idx) => {
@@ -76,15 +76,15 @@ function TabNavigator({
             >
               {isFocused
                 ? descriptors[route.key].options.activeTab || (
-                    <Center>
-                      <Text color={color}>{route.name} </Text>
-                    </Center>
-                  )
+                  <Center>
+                    <Text color={color}>{route.name} </Text>
+                  </Center>
+                )
                 : descriptors[route.key].options.inActiveTab || (
-                    <Center>
-                      <Text color={color}>{route.name}</Text>
-                    </Center>
-                  )}
+                  <Center>
+                    <Text color={color}>{route.name}</Text>
+                  </Center>
+                )}
             </Pressable>
           );
         })}

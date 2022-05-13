@@ -27,9 +27,19 @@ import { MeterTabIcon } from "../../components/TabIcon";
 
 //components
 
+//icons 
+import SVGIconHome from '../../assets/tab-icons/home-active.svg'
+import SVGIconHomeAlt from '../../assets/tab-icons/home-inactive.svg'
+import SVGIconTransact from '../../assets/tab-icons/transact-active.svg'
+import SVGIconTransactAlt from '../../assets/tab-icons/transact-inactive.svg'
+import SVGIconNotify from '../../assets/tab-icons/notify-active.svg'
+import SVGIconNotifyAlt from '../../assets/tab-icons/notify-inactive.svg'
+import SVGIconProfile from '../../assets/tab-icons/profile-active.svg'
+import SVGIconProfileAlt from '../../assets/tab-icons/profile-inactive.svg'
+
 const BottomTab = createCustomTabNavigator();
 
-export default function () {
+export default function() {
   return (
     <BottomTab.Navigator
       tabBarStyle={{
@@ -42,12 +52,13 @@ export default function () {
         options={{
           activeTab: (
             <Center mt={25}>
-              <EIcon color="blue" name="home" size={20} />
+              <SVGIconHome width={20} height={19} />
+              {/* <EIcon color="blue" name="home" size={20} /> */}
             </Center>
           ),
           inActiveTab: (
             <Center mt={25}>
-              <AIcon name="home" size={20} />
+              <SVGIconHomeAlt width={20} height={19} />
             </Center>
           ),
         }}
@@ -58,12 +69,12 @@ export default function () {
         options={{
           activeTab: (
             <Center mt={25}>
-              <EIcon color="blue" name="home" size={20} />
+              <SVGIconTransact width={20} height={19} />
             </Center>
           ),
           inActiveTab: (
             <Center mt={25}>
-              <AIcon name="home" size={20} />
+              <SVGIconTransactAlt width={20} height={19} />
             </Center>
           ),
         }}
@@ -82,12 +93,12 @@ export default function () {
         options={{
           activeTab: (
             <Center mt={25}>
-              <IoIcon color="blue" name="notifications" size={21} />
+              <SVGIconNotify width={21} height={20} />
             </Center>
           ),
           inActiveTab: (
             <Center mt={25}>
-              <FIcon name="bell" size={20} />
+              <SVGIconNotifyAlt width={21} height={20} />
             </Center>
           ),
         }}
@@ -97,12 +108,12 @@ export default function () {
         options={{
           activeTab: (
             <Center mt={25}>
-              <IoIcon color="blue" name="person" size={20} />
+              <SVGIconProfile width={20} height={19} />
             </Center>
           ),
           inActiveTab: (
             <Center mt={25}>
-              <FeIcon name="user" size={20} />
+              <SVGIconProfileAlt width={20} height={19} />
             </Center>
           ),
         }}
