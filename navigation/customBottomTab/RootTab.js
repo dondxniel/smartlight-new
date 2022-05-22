@@ -27,19 +27,19 @@ import { MeterTabIcon } from "../../components/TabIcon";
 
 //components
 
-//icons 
-import SVGIconHome from '../../assets/tab-icons/home-active.svg'
-import SVGIconHomeAlt from '../../assets/tab-icons/home-inactive.svg'
-import SVGIconTransact from '../../assets/tab-icons/transact-active.svg'
-import SVGIconTransactAlt from '../../assets/tab-icons/transact-inactive.svg'
-import SVGIconNotify from '../../assets/tab-icons/notify-active.svg'
-import SVGIconNotifyAlt from '../../assets/tab-icons/notify-inactive.svg'
-import SVGIconProfile from '../../assets/tab-icons/profile-active.svg'
-import SVGIconProfileAlt from '../../assets/tab-icons/profile-inactive.svg'
+//icons
+import SVGIconHome from "../../assets/tab-icons/home-active.svg";
+import SVGIconHomeAlt from "../../assets/tab-icons/home-inactive.svg";
+import SVGIconTransact from "../../assets/tab-icons/transact-active.svg";
+import SVGIconTransactAlt from "../../assets/tab-icons/transact-inactive.svg";
+import SVGIconNotify from "../../assets/tab-icons/notify-active.svg";
+import SVGIconNotifyAlt from "../../assets/tab-icons/notify-inactive.svg";
+import SVGIconProfile from "../../assets/tab-icons/profile-active.svg";
+import SVGIconProfileAlt from "../../assets/tab-icons/profile-inactive.svg";
 
 const BottomTab = createCustomTabNavigator();
 
-export default function() {
+export default function () {
   return (
     <BottomTab.Navigator
       tabBarStyle={{
@@ -67,6 +67,7 @@ export default function() {
       <BottomTab.Screen
         name="transaction"
         options={{
+          headerShown: true,
           activeTab: (
             <Center mt={25}>
               <SVGIconTransact width={20} height={19} />

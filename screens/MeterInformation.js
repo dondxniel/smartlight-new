@@ -1,30 +1,34 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Button, Image, ScrollView, Text } from "native-base";
+import { Box, Button, Heading, Image, ScrollView, Text } from "native-base";
+import { LineChart } from "react-native-chart-kit";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
 
-//icons
-
-//components
-import TransactionOverviewChart from "../components/TransactionOverviewChart";
 import MeterInfo from "../components/MeterInfo";
 import TransactionInfo from "../components/TransactionInfo";
-import StickyHeader from "../components/StickyHeader";
+import DashboardLineChartHeader from "../components/DashboardLineChartHeader";
+
+//constants
+import { width } from "../constants/dims";
+
+//mocks
+import { linedata, transactions } from "../mocks/";
 import MeterLimitPrompt from "../components/MeterLimitPrompt";
 import LimitErrorPrompt from "../components/LimitErrorPrompt";
 import LimitSuccessPrompt from "../components/LimitSuccessPrompt";
-
-//constants
-
-//mocks
-import { transactions } from "../mocks/";
+import StickyHeader from "../components/StickyHeader";
 
 export default function () {
   const navigation = useNavigation();
 
+  const [focusedVal, setFocusVal] = React.useState(0);
   const [openLimitComp, setOpenLimitComponent] = React.useState(false);
   const [openOnLimitSuccess, setOpenOnLimitSuccess] = React.useState(false);
   const [openOnLimitError, setOpenOnLimitError] = React.useState(false);
+
+  const handleFocusPoint = React.useCallback((val) => {
+    setFocusVal(val.value.toFixed(2));
+  }, []);
 
   const handleToggleLimitComp = React.useCallback(
     () => setOpenLimitComponent((val) => !val),
@@ -55,8 +59,9 @@ export default function () {
       parallaxHeaderHeight={65}
       renderFixedHeader={() => <StickyHeader navigation={navigation} />}
     >
-      {/* meter card component */}
-      <ScrollView bounces py={2} px={4}>
+      <ScrollView px={4} py={2} bounces>
+        {/* meter card component */}
+
         <MeterInfo
           avatar={
             <Image
@@ -104,11 +109,38 @@ export default function () {
           sixe="sm"
         />
 
-        {/* ------- chart overview ------- */}
-        <TransactionOverviewChart />
-        <Text fontWeight={"semibold"} my={2}>
-          Recent Transactions
-        </Text>
+        {/* ------- linechart ------- */}
+
+        <Box my={2} rounded={"2xl"} background={"white"}>
+          <DashboardLineChartHeader
+            key={"linechart header"}
+            focusValue={focusedVal}
+          />
+          <LineChart
+            bezier
+            transparent
+            fromZero
+            withShadow={false}
+            withVerticalLines={false}
+            height={300}
+            segments={5}
+            xLabelsOffset={10}
+            data={linedata}
+            width={width - 50}
+            onDataPointClick={handleFocusPoint}
+            chartConfig={{
+              strokeWidth: 4,
+              color: () => `#4a60ddaa`,
+              backgroundGradientFrom: "#5d6594aa",
+              backgroundGradientTo: "#626db3",
+              labelColor: () => `#181818`,
+              style: {
+                borderRadius: 16,
+              },
+            }}
+          />
+        </Box>
+        <Heading my={2}>Recent Transactions</Heading>
         {transactions.map(({ meterInfo, amount, id }) => (
           <TransactionInfo
             avatar={

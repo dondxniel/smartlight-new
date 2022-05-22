@@ -12,18 +12,19 @@ import ForgotPassword from "../../screens/ForgotPassword";
 import Otp from "../../screens/Otp";
 import NewPassword from "../../screens/NewPassword";
 
-export default function () {
+const BoardingStack = Stack;
+export default function() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <BoardingStack.Navigator screenOptions={{ headerShown: false }}>
       {/* --- first screen --- */}
-      <Stack.Screen
+      <BoardingStack.Screen
         name="onboarding"
         children={(props) => <OnboardingScreen {...props} />}
       />
 
       {/* --- second screen --- */}
 
-      <Stack.Screen
+      <BoardingStack.Screen
         options={{
           animation: "slide_from_bottom",
         }}
@@ -33,7 +34,7 @@ export default function () {
 
       {/* --- third screen --- */}
 
-      <Stack.Screen
+      <BoardingStack.Screen
         options={{
           animation: "slide_from_left",
         }}
@@ -43,7 +44,7 @@ export default function () {
 
       {/* --- fourth screen --- */}
 
-      <Stack.Screen
+      <BoardingStack.Screen
         options={{
           animation: "slide_from_bottom",
         }}
@@ -53,7 +54,7 @@ export default function () {
 
       {/* fifth screen */}
 
-      <Stack.Screen
+      <BoardingStack.Screen
         options={{ animation: "slide_from_right" }}
         name="forgot_password"
         children={(props) => <ForgotPassword {...props} />}
@@ -61,7 +62,7 @@ export default function () {
 
       {/* sixth screen */}
 
-      <Stack.Screen
+      <BoardingStack.Screen
         options={{ animation: "slide_from_right" }}
         name="otp"
         children={(props) => <Otp {...props} />}
@@ -69,11 +70,11 @@ export default function () {
 
       {/* seventh screen */}
 
-      <Stack.Screen
+      <BoardingStack.Screen
         options={{ animation: "slide_from_left" }}
         name="new_password"
         children={(props) => <NewPassword {...props} />}
       />
-    </Stack.Navigator>
+    </BoardingStack.Navigator>
   );
 }
