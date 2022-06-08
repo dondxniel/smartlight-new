@@ -1,4 +1,5 @@
 import { height, width } from '../constants/dims';
+import { textColorPrimary, textColorMuted } from '../constants/style';
 
 export default {
   onboardingImageContainer: {
@@ -75,5 +76,67 @@ export default {
     color: 'red.900',
     bg: 'red.100',
     rounded: '2xl'
+  },
+  textMuted: {
+    color: textColorMuted
+  },
+  notificationHeading:{
+    mx: 5,
+    my: 3,
+  },
+  notificationItem: {
+    container: {
+      mx: 5,
+      my: 2,
+      p: 5,
+      borderRadius: 20,
+      color: "red",
+      // borderWidth: 1,
+      // borderColor: '#ddd',
+      // borderStyle: 'solid',
+      backgroundColor: "#fafafa"
+    },
+    topic: {
+      fontWeight: 'bold',
+      fontSize: 'xl',
+      style: {
+        color: textColorPrimary,
+        fontFamily: 'GTWalsheimProMedium',
+      }
+    },
+    info: {
+      style: {
+        color: textColorPrimary,
+        fontFamily: 'GTWalsheimProMedium',
+      }
+    },
+    date: {
+      fontSize: '2xs',
+      mt: '5',
+      color: textColorMuted
+    }
+  },
+  profileHeader: {
+    style: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    }
+  },
+  profileHeaderChild: {
+    style: {
+      width: "50%",
+      justifyContent: 'space-between',
+      flexDirection: 'row',
+    }
+  },
+  logoutBtnC:{
+    style: {
+      flexDirection: 'row',
+      // justifyContent: 'end'
+    }
+  },
+  logoutBtn:{
+    colorScheme: 'secondary'
   }
 }

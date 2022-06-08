@@ -20,7 +20,7 @@ const LoginForm = () => {
         }}
         validateOnChange={false}
         validate={(values) => {
-          const errors = {};
+          /*const errors = {};
 
           if (!values.email) {
             errors.email = toast.show({
@@ -49,6 +49,7 @@ const LoginForm = () => {
             });
           }
           return errors;
+          */
         }}
       >
         {({

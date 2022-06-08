@@ -17,7 +17,6 @@ const Login = ({ navigation }) => {
     <KeyboardAwareScrollView
       behavior={'height'}
     >
-
       <View
         bg='primary.100'
         h={height}
