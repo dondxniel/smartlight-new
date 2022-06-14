@@ -117,10 +117,11 @@ export default {
     }
   },
   profileHeader: {
+    my: 3,
     style: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
     }
   },
   profileHeaderChild: {
@@ -137,6 +138,34 @@ export default {
     }
   },
   logoutBtn:{
-    colorScheme: 'secondary'
+    borderRadius: 10,
+    style: {
+      padding: 15
+    }
+  },
+  userDetails: {
+    my: 5,
+    flexDirection: 'row',
+    // borderWidth: 1,
+    // borderStyle: 'solid',
+    // borderColor: '#333',
+    // height: 'fit-content'
+  },
+  userPhoto: {
+    flex: 1,
+    // borderWidth: 1,
+    // borderStyle: 'solid',
+    // borderColor: '#333',
+    height: 'auto'
+  },
+  userIdentifier: {
+    flex: 3,
+    justifyContent: 'center',
+    paddingLeft: 5,
+    // borderWidth: 1,
+    // borderStyle: 'solid',
+    // borderColor: '#333',
+    height: 'auto'
+
   }
 }
