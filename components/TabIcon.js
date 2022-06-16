@@ -4,13 +4,13 @@ import Icon from "react-native-vector-icons/Entypo";
 
 export const MeterTabIcon = () => {
   return (
-    <Center mt={-18}>
+    <Center mt={"-1"}>
       <Stack
         bg={"primary.100"}
         rounded={"full"}
-        height={60}
+        height={"12"}
+        width={"12"}
         shadow={9}
-        width={60}
         alignItems={"center"}
         justifyContent={"center"}
       >
