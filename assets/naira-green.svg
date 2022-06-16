@@ -1,0 +1,18 @@
+<svg width="16" height="28" viewBox="0 0 16 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="16" height="28" fill="#E5E5E5"/>
+<g id="Add meter" clip-path="url(#clip0_0_1)">
+<path id="Rectangle 6" d="M-52 -336C-52 -351.464 -39.464 -364 -24 -364H295C310.464 -364 323 -351.464 323 -336V339H-52V-336Z" fill="white"/>
+<g id="Group 7017">
+<g id="Group 7015">
+<rect id="Rectangle 1967" x="-22" y="-16" width="315" height="60" rx="20" fill="#FAFAFA"/>
+<rect id="Rectangle 1968" x="-14" y="-8" width="43" height="44" rx="15" fill="#52DDA8"/>
+<text id="&#226;&#130;&#166;" fill="white" xml:space="preserve" style="white-space: pre" font-family="GT Walsheim Pro" font-size="24.8888" font-weight="bold" letter-spacing="-0.221419px"><tspan x="0" y="22.1511">&#x20a6;</tspan></text>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_1">
+<rect width="375" height="723" fill="white" transform="translate(-52 -403)"/>
+</clipPath>
+</defs>
+</svg>
