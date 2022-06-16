@@ -1,13 +1,14 @@
 import React from "react";
 import { ScrollView } from "react-native";
-import { Text, HStack, Box, Image, Button } from "native-base";
+import { Text, HStack, Box, Image, Button, useDisclose } from "native-base";
 import { LineChart } from "react-native-chart-kit";
+import { useNavigation } from "@react-navigation/native";
+
 //constants
 import { height, width } from "../constants/dims";
 
 //icons
 import DashboardLineChartHeader from "../components/DashboardLineChartHeader";
-import { useNavigation } from "@react-navigation/native";
 import MeterInfo from "../components/MeterInfo";
 import AddMeterButton from "../components/AddMeterButton";
 
@@ -18,12 +19,7 @@ import AddMeterPrompt from "../components/AddMeterPrompt";
 export default function () {
   const navigation = useNavigation();
   const [focusedVal, setFocusVal] = React.useState(0);
-  const [openAddMeter, setOpenAddMeter] = React.useState(false);
-
-  const handleToggleAddMeter = React.useCallback(
-    () => setOpenAddMeter((val) => !val),
-    [],
-  );
+  const { isOpen, onClose, onOpen } = useDisclose();
 
   const handleFocusPoint = React.useCallback((val) => {
     setFocusVal(val.value.toFixed(2));
@@ -58,8 +54,9 @@ export default function () {
           meterInfo={"U/Sunday Kaduna"}
         />
 
-        <AddMeterButton onPress={handleToggleAddMeter} />
+        <AddMeterButton onPress={onOpen} />
       </HStack>
+      <AddMeterPrompt size={"xl"} isOpen={isOpen} onClose={onClose} />
       <Box my={2} rounded={"2xl"} background={"white"}>
         <DashboardLineChartHeader
           key={"linechart header"}
@@ -105,11 +102,6 @@ export default function () {
           <Text color={"white"}>Coming soon</Text>
         </HStack>
       </Button>
-      <AddMeterPrompt
-        size={"xl"}
-        isOpen={openAddMeter}
-        onClose={handleToggleAddMeter}
-      />
     </ScrollView>
   );
 }

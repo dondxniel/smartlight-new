@@ -1,6 +1,14 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Box, Button, Heading, Image, ScrollView, Text } from "native-base";
+import {
+  Box,
+  Button,
+  Heading,
+  Image,
+  ScrollView,
+  Text,
+  useDisclose,
+} from "native-base";
 import { LineChart } from "react-native-chart-kit";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
 
@@ -20,9 +28,9 @@ import StickyHeader from "../components/StickyHeader";
 
 export default function () {
   const navigation = useNavigation();
-
+  const { isOpen, onClose, onOpen } = useDisclose();
   const [focusedVal, setFocusVal] = React.useState(0);
-  const [openLimitComp, setOpenLimitComponent] = React.useState(false);
+
   const [openOnLimitSuccess, setOpenOnLimitSuccess] = React.useState(false);
   const [openOnLimitError, setOpenOnLimitError] = React.useState(false);
 
@@ -30,10 +38,6 @@ export default function () {
     setFocusVal(val.value.toFixed(2));
   }, []);
 
-  const handleToggleLimitComp = React.useCallback(
-    () => setOpenLimitComponent((val) => !val),
-    [],
-  );
   const handleToggleLimitSuccess = React.useCallback(() =>
     setOpenOnLimitSuccess((val) => !val),
   );
@@ -43,10 +47,10 @@ export default function () {
 
   const handleMeterLimitSubmit = React.useCallback(() => {
     if (true) {
-      setOpenLimitComponent(false);
+      onClose();
       handleToggleLimitSuccess();
     } else {
-      setOpenLimitComponent(false);
+      onClose();
       handleToggleLimitError();
     }
   }, []);
@@ -79,7 +83,7 @@ export default function () {
         {/* set limits */}
 
         <Button
-          onPress={handleToggleLimitComp}
+          onPress={onOpen}
           my={4}
           p={4}
           rounded={"2xl"}
@@ -93,8 +97,8 @@ export default function () {
         <MeterLimitPrompt
           onSetLimit={handleMeterLimitSubmit}
           size={"xl"}
-          isOpen={openLimitComp}
-          onClose={handleToggleLimitComp}
+          isOpen={isOpen}
+          onClose={onClose}
         />
         <LimitErrorPrompt
           isOpen={openOnLimitError}

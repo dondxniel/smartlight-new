@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Button, Image, ScrollView, Text } from "native-base";
+import { Button, Image, ScrollView, Text, useDisclose } from "native-base";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
 
 //icons
@@ -21,15 +21,10 @@ import { transactions } from "../mocks/";
 
 export default function () {
   const navigation = useNavigation();
-
-  const [openLimitComp, setOpenLimitComponent] = React.useState(false);
+  const { isOpen, onClose, onOpen } = useDisclose();
   const [openOnLimitSuccess, setOpenOnLimitSuccess] = React.useState(false);
   const [openOnLimitError, setOpenOnLimitError] = React.useState(false);
 
-  const handleToggleLimitComp = React.useCallback(
-    () => setOpenLimitComponent((val) => !val),
-    [],
-  );
   const handleToggleLimitSuccess = React.useCallback(() =>
     setOpenOnLimitSuccess((val) => !val),
   );
@@ -39,10 +34,10 @@ export default function () {
 
   const handleMeterLimitSubmit = React.useCallback(() => {
     if (true) {
-      setOpenLimitComponent(false);
+      onClose();
       handleToggleLimitSuccess();
     } else {
-      setOpenLimitComponent(false);
+      onClose();
       handleToggleLimitError();
     }
   }, []);
@@ -74,7 +69,7 @@ export default function () {
         {/* set limits */}
 
         <Button
-          onPress={handleToggleLimitComp}
+          onPress={onOpen}
           my={4}
           p={4}
           rounded={"2xl"}
@@ -88,8 +83,8 @@ export default function () {
         <MeterLimitPrompt
           onSetLimit={handleMeterLimitSubmit}
           size={"xl"}
-          isOpen={openLimitComp}
-          onClose={handleToggleLimitComp}
+          isOpen={isOpen}
+          onClose={onClose}
         />
         <LimitErrorPrompt
           isOpen={openOnLimitError}

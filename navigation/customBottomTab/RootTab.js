@@ -1,15 +1,15 @@
 import React from "react";
 import { Center } from "native-base";
-import EIcon from "react-native-vector-icons/Entypo";
-import AIcon from "react-native-vector-icons/AntDesign";
-import FeIcon from "react-native-vector-icons/Feather";
-import FaIcon from "react-native-vector-icons/FontAwesome";
-import FIcon from "react-native-vector-icons/Fontisto";
-import FoIcon from "react-native-vector-icons/Foundation";
-import IoIcon from "react-native-vector-icons/Ionicons";
-import OIcon from "react-native-vector-icons/Octicons";
-import MIcon from "react-native-vector-icons/MaterialIcons";
-import SlIcon from "react-native-vector-icons/SimpleLineIcons";
+// import EIcon from "react-native-vector-icons/Entypo";
+// import AIcon from "react-native-vector-icons/AntDesign";
+// import FeIcon from "react-native-vector-icons/Feather";
+// import FaIcon from "react-native-vector-icons/FontAwesome";
+// import FIcon from "react-native-vector-icons/Fontisto";
+// import FoIcon from "react-native-vector-icons/Foundation";
+// import IoIcon from "react-native-vector-icons/Ionicons";
+// import OIcon from "react-native-vector-icons/Octicons";
+// import MIcon from "react-native-vector-icons/MaterialIcons";
+// import SlIcon from "react-native-vector-icons/SimpleLineIcons";
 
 // constant
 import { width, height } from "../../constants/dims";

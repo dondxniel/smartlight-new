@@ -24,13 +24,10 @@ const MeterCard = ({
       p={7}
       background={"#fff"}
       rounded={"2xl"}
+      height={162}
       flex={0.9}
     >
-      <Stack
-        space={"md"}
-
-        direction={horizontal ? "row" : "column"}
-      >
+      <Stack space={"md"} direction={horizontal ? "row" : "column"}>
         {avatar && (
           <Avatar bgColor={"#ffffff"} shadow={2}>
             {avatar}
