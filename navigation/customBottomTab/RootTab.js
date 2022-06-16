@@ -40,87 +40,87 @@ import SVGIconProfileAlt from "../../assets/tab-icons/profile-inactive.svg";
 const BottomTab = createCustomTabNavigator();
 
 export default function () {
-  return (
-    <BottomTab.Navigator
-      tabBarStyle={{
-        width,
-        height: 70,
-      }}
-    >
-      <BottomTab.Screen
-        name="dashboard"
-        options={{
-          activeTab: (
-            <Center mt={25}>
-              <SVGIconHome width={20} height={19} />
-              {/* <EIcon color="blue" name="home" size={20} /> */}
-            </Center>
-          ),
-          inActiveTab: (
-            <Center mt={25}>
-              <SVGIconHomeAlt width={20} height={19} />
-            </Center>
-          ),
-        }}
-        children={(props) => <DashboardScreen {...props} />}
-      />
-      <BottomTab.Screen
-        name="transaction"
-        options={{
-          headerShown: true,
-          activeTab: (
-            <Center mt={25}>
-              <SVGIconTransact width={20} height={19} />
-            </Center>
-          ),
-          inActiveTab: (
-            <Center mt={25}>
-              <SVGIconTransactAlt width={20} height={19} />
-            </Center>
-          ),
-        }}
-        children={(props) => <TransactionScreen {...props} />}
-      />
-      <BottomTab.Screen
-        options={{
-          activeTab: <MeterTabIcon />,
-          inActiveTab: <MeterTabIcon />,
-        }}
-        name="meter"
-        children={(props) => <MeterScreen {...props} />}
-      />
-      <BottomTab.Screen
-        name="notification"
-        options={{
-          activeTab: (
-            <Center mt={25}>
-              <SVGIconNotify width={21} height={20} />
-            </Center>
-          ),
-          inActiveTab: (
-            <Center mt={25}>
-              <SVGIconNotifyAlt width={21} height={20} />
-            </Center>
-          ),
-        }}
-        children={(props) => <NotificationScreen {...props} />}
-      />
-      <BottomTab.Screen
-        options={{
-          activeTab: (
-            <Center mt={25}>
-              <SVGIconProfile width={20} height={19} />
-            </Center>
-          ),
-          inActiveTab: (
-            <Center mt={25}>
-              <SVGIconProfileAlt width={20} height={19} />
-            </Center>
-          ),
-        }}
-        name="profile"
-        children={(props) => <ProfileScreen {...props} />}
-      />
-    </BottomTab.Navigator>
-  );
+	return (
+		<BottomTab.Navigator
+			tabBarStyle={{
+				width,
+				height: 70,
+			}}
+		>
+			<BottomTab.Screen
+				name="dashboard"
+				options={{
+					activeTab: (
+						<Center mt={25}>
+							<SVGIconHome width={20} height={19} />
+							{/* <EIcon color="blue" name="home" size={20} /> */}
+						</Center>
+					),
+					inActiveTab: (
+						<Center mt={25}>
+							<SVGIconHomeAlt width={20} height={19} />
+						</Center>
+					),
+				}}
+				children={(props) => <DashboardScreen {...props} />}
+			/>
+			<BottomTab.Screen
+				name="transaction"
+				options={{
+					headerShown: true,
+					activeTab: (
+						<Center mt={25}>
+							<SVGIconTransact width={20} height={19} />
+						</Center>
+					),
+					inActiveTab: (
+						<Center mt={25}>
+							<SVGIconTransactAlt width={20} height={19} />
+						</Center>
+					),
+				}}
+				children={(props) => <TransactionScreen {...props} />}
+			/>
+			<BottomTab.Screen
+				options={{
+					activeTab: <MeterTabIcon />,
+					inActiveTab: <MeterTabIcon />,
+				}}
+				name="meter"
+				children={(props) => <MeterScreen {...props} />}
+			/>
+			<BottomTab.Screen
+				name="notification"
+				options={{
+					activeTab: (
+						<Center mt={25}>
+							<SVGIconNotify width={21} height={20} />
+						</Center>
+					),
+					inActiveTab: (
+						<Center mt={25}>
+							<SVGIconNotifyAlt width={21} height={20} />
+						</Center>
+					),
+				}}
+				children={(props) => <NotificationScreen {...props} />}
+			/>
+			<BottomTab.Screen
+				options={{
+					activeTab: (
+						<Center mt={25}>
+							<SVGIconProfile width={20} height={19} />
+						</Center>
+					),
+					inActiveTab: (
+						<Center mt={25}>
+							<SVGIconProfileAlt width={20} height={19} />
+						</Center>
+					),
+				}}
+				name="profile"
+				children={(props) => <ProfileScreen {...props} />}
+			/>
+		</BottomTab.Navigator>
+	);
 }
