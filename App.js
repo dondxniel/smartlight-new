@@ -1,6 +1,7 @@
-import React from "react";
-import { View } from "native-base";
+import React, { useEffect } from "react";
 import { LogBox } from "react-native";
+import RNBootSplash from "react-native-bootsplash";
+import { View } from "native-base";
 
 import NavigationRoot from "./navigation";
 //ignore warnings from popping
@@ -11,6 +12,16 @@ const warnings = [
 LogBox.ignoreLogs(warnings.map((warning) => warning));
 
 const App = () => {
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
+
+    init().finally(async () => {
+      await RNBootSplash.hide({ fade: true });
+      console.log("Bootsplash has been hidden successfully");
+    });
+  }, []);
   return (
     <View flex={1}>
       <NavigationRoot />
