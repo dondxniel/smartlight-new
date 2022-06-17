@@ -7,6 +7,7 @@ import {
   HStack,
   IconButton,
   Input,
+  ScrollView,
   Text,
 } from "native-base";
 
@@ -36,54 +37,80 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
   ]);
 
   return (
-    <Actionsheet isOpen={isOpen} onClose={onClose} disableOverlay>
-      <Actionsheet.Content>
-        <Actionsheet.Item _pressed={{ background: "transparent" }}>
-          <Heading>Buy Units</Heading>
-        </Actionsheet.Item>
-        <Actionsheet.Item _pressed={{ background: "transparent" }}>
-          <Text>Select Meter</Text>
-          <FlatList
-            contentOffset={{ x: 10, y: 10 }}
-            horizontal
-            data={meters}
-            keyExtractor={(_, id) => id.toString()}
-            renderItem={({ item: { address, meter_no, name } }) => (
-              <MeterCard address={address} meter_no={meter_no} name={name} />
-            )}
-          />
-        </Actionsheet.Item>
-        <Actionsheet.Item _pressed={{ background: "transparent" }}>
-          <Text>Enter Amount</Text>
-          ds
-          <Input
-            size={"sm"}
-            rounded={"2xl"}
-            width={width - 50}
-            type="text"
-            placeholder="1,000"
-            leftElement={
-              <IconButton>
-                <NairaIcon height={20} width={20} />
-              </IconButton>
-            }
-          />
-          <Text>Expected Unit</Text>
-          <HStack>
-            <Text fontWeight={700}>128.6</Text>
-            <Text>kwh</Text>
-          </HStack>
-        </Actionsheet.Item>
-        <Actionsheet.Item _pressed={{ background: "transparent" }}>
-          <HStack>
-            <Text>Additional</Text>
-            <Text fontWeight={500}> N100 </Text>
-            <Text>will be charged on purchase</Text>
-          </HStack>
-          <Button {...nbStyles.logoutBtn} width={width - 50}>
-            Proceed
-          </Button>
-        </Actionsheet.Item>
+    <Actionsheet isOpen={isOpen} onClose={onClose}>
+      <Actionsheet.Content bg={"white"}>
+        <ScrollView>
+          <Actionsheet.Item
+            bg={"white"}
+            _pressed={{ background: "transparent" }}
+          >
+            <Heading>Buy Units</Heading>
+            <Text mt={2}>Select Meter</Text>
+          </Actionsheet.Item>
+          <Actionsheet.Item
+            mt={-5}
+            bg={"white"}
+            _pressed={{ background: "transparent" }}
+          >
+            <FlatList
+              horizontal
+              contentOffset={{ x: 10, y: 10 }}
+              data={meters}
+              keyExtractor={(_, id) => id.toString()}
+              renderItem={({ item: { address, meter_no, name } }, id) => (
+                <MeterCard address={address} meter_no={meter_no} name={name} />
+              )}
+            />
+          </Actionsheet.Item>
+          <Actionsheet.Item
+            bg={"white"}
+            _pressed={{ background: "transparent" }}
+          >
+            <Text mt={-3}>Enter Amount</Text>
+
+            <Input
+              mt={2}
+              backgroundColor={"#fafafa"}
+              size={"sm"}
+              borderWidth={0}
+              rounded={"2xl"}
+              width={width - 50}
+              type="text"
+              placeholder="1,000"
+              leftElement={
+                <IconButton ml={2} rounded={15} bg={"#52DDA8"}>
+                  <NairaIcon height={20} width={20} />
+                </IconButton>
+              }
+            />
+            <Text mt={2}>Expected Unit</Text>
+            <HStack
+              alignItems={"center"}
+              mt={2}
+              p={3}
+              bg={"#fafafa"}
+              rounded={"2xl"}
+            >
+              <Text fontSize={"lg"} fontWeight={700}>
+                128.6
+              </Text>
+              <Text fontSize={"md"}> kwh</Text>
+            </HStack>
+          </Actionsheet.Item>
+          <Actionsheet.Item
+            bg={"white"}
+            _pressed={{ background: "transparent" }}
+          >
+            <HStack mt={-5} pb={2}>
+              <Text>Additional</Text>
+              <Text fontWeight={500}> N100 </Text>
+              <Text>will be charged on purchase</Text>
+            </HStack>
+            <Button p={4} {...nbStyles.logoutBtn} width={width - 50}>
+              Proceed
+            </Button>
+          </Actionsheet.Item>
+        </ScrollView>
       </Actionsheet.Content>
     </Actionsheet>
   );
