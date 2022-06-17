@@ -1,10 +1,10 @@
 import React from "react";
 import {
+  Actionsheet,
   Button,
   Container,
   FormControl,
   Input,
-  Modal,
   Text,
   View,
 } from "native-base";
@@ -12,19 +12,19 @@ import { Formik } from "formik";
 import AddMeterErrorPrompt from "./AddMeterErrorPrompt";
 import AddMeterSuccessPrompt from "./AddMeterSuccessPrompt";
 
-const ModalComp = (props) => {
+const ActionsheetComp = (props) => {
   const { onClose } = props;
 
   const [openSuccessPrompt, setOpenSuccessPrompt] = React.useState(false);
   const [openErrorPrompt, setOpenErrorPrompt] = React.useState(false);
   return (
     <Container>
-      <Modal {...props}>
-        <Modal.Content>
-          <Modal.Header borderBottomWidth={0}>
+      <Actionsheet {...props}>
+        <Actionsheet.Content>
+          <Actionsheet.Header borderBottomWidth={0}>
             Add your meter to continue
-          </Modal.Header>
-          <Modal.Body>
+          </Actionsheet.Header>
+          <Actionsheet.Body>
             <Formik
               onSubmit={(values) => {
                 onClose();
@@ -119,14 +119,14 @@ const ModalComp = (props) => {
                 </View>
               )}
             </Formik>
-          </Modal.Body>
-        </Modal.Content>
-      </Modal>
+          </Actionsheet.Body>
+        </Actionsheet.Content>
+      </Actionsheet>
       <AddMeterSuccessPrompt isOpen={openSuccessPrompt} />
       <AddMeterErrorPrompt isOpen={openErrorPrompt} />
     </Container>
   );
 };
 
-const AddMeterPrompt = React.memo(ModalComp);
+const AddMeterPrompt = React.memo(ActionsheetComp);
 export default AddMeterPrompt;
