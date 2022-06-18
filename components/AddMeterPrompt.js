@@ -2,15 +2,18 @@ import React from "react";
 import {
   Actionsheet,
   Button,
-  Container,
+  Center,
   FormControl,
+  Heading,
   Input,
+  ScrollView,
   Text,
-  View,
 } from "native-base";
 import { Formik } from "formik";
 import AddMeterErrorPrompt from "./AddMeterErrorPrompt";
 import AddMeterSuccessPrompt from "./AddMeterSuccessPrompt";
+import { width } from "../constants/dims";
+import nbStyles from "../style/nb-styles";
 
 const ActionsheetComp = (props) => {
   const { onClose } = props;
@@ -18,22 +21,22 @@ const ActionsheetComp = (props) => {
   const [openSuccessPrompt, setOpenSuccessPrompt] = React.useState(false);
   const [openErrorPrompt, setOpenErrorPrompt] = React.useState(false);
   return (
-    <Container>
+    <Center ml={"4"} mr={"4"}>
       <Actionsheet {...props}>
-        <Actionsheet.Content>
-          <Actionsheet.Header borderBottomWidth={0}>
-            Add your meter to continue
-          </Actionsheet.Header>
-          <Actionsheet.Body>
+        <Actionsheet.Content {...nbStyles.actionSheet.actionSheetContent}>
+          <Actionsheet.Item {...nbStyles.actionSheet.actionSheetItem}>
+            <Heading> Add your meter to continue</Heading>
+          </Actionsheet.Item>
+          <Actionsheet.Item {...nbStyles.actionSheet.actionSheetItem}>
             <Formik
               onSubmit={(values) => {
                 onClose();
                 if (true) {
                   setOpenSuccessPrompt(true);
-                  setTimeout(() => setOpenSuccessPrompt(false), 5000);
+                  setTimeout(() => setOpenSuccessPrompt(false), 3000);
                 } else {
                   setOpenErrorPrompt(true);
-                  setTimeout(() => setOpenErrorPrompt(false), 5000);
+                  setTimeout(() => setOpenErrorPrompt(false), 3000);
                 }
               }}
               initialValues={{
@@ -43,7 +46,7 @@ const ActionsheetComp = (props) => {
               }}
             >
               {({ handleSubmit, handleChange, values }) => (
-                <View>
+                <ScrollView width={width - 50}>
                   <FormControl mb={2}>
                     <Text>Meter number</Text>
                     <Input
@@ -112,19 +115,24 @@ const ActionsheetComp = (props) => {
                     />
                   </FormControl>
                   <FormControl mt={4}>
-                    <Button onPress={handleSubmit} padding={4} rounded={"2xl"}>
+                    <Button
+                      onPress={handleSubmit}
+                      size={"lg"}
+                      padding={4}
+                      rounded={"2xl"}
+                    >
                       Add Meter
                     </Button>
                   </FormControl>
-                </View>
+                </ScrollView>
               )}
             </Formik>
-          </Actionsheet.Body>
+          </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>
       <AddMeterSuccessPrompt isOpen={openSuccessPrompt} />
       <AddMeterErrorPrompt isOpen={openErrorPrompt} />
-    </Container>
+    </Center>
   );
 };
 
