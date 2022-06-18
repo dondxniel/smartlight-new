@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Avatar,
-  Center,
-  HStack,
-  Pressable,
-  Stack,
-  Text,
-  VStack,
-} from "native-base";
+import { Avatar, HStack, Pressable, Stack, Text, VStack } from "native-base";
 
 const MeterCard = ({
   avatar,
@@ -21,15 +13,19 @@ const MeterCard = ({
   return (
     <Pressable
       onPress={onPress}
-      p={7}
+      p={5}
       background={"#fff"}
       rounded={"2xl"}
       height={162}
       flex={0.9}
     >
-      <Stack space={"md"} direction={horizontal ? "row" : "column"}>
+      <Stack
+        space={"md"}
+        alignItems={horizontal && "center"}
+        direction={horizontal && "row"}
+      >
         {avatar && (
-          <Avatar bgColor={"#ffffff"} shadow={2}>
+          <Avatar w={28} h={28} bgColor={"#ffffff"} shadow={2}>
             {avatar}
           </Avatar>
         )}
@@ -41,16 +37,16 @@ const MeterCard = ({
           </HStack>
         </VStack>
       </Stack>
-      <Center>
-        <HStack>
-          <Text fontSize={50} fontWeight={"bold"} color={"#5961E0"}>
-            {meterValue}{" "}
-          </Text>
-          <Text style={{ marginTop: 20 }} fontSize={30}>
-            kwh
-          </Text>
-        </HStack>
-      </Center>
+
+      <HStack mt={horizontal && 7} ml={horizontal && 10} alignItems={"center"}>
+        <Text fontSize={40} fontWeight={"bold"} color={"#5961E0"}>
+          {meterValue}
+        </Text>
+        <Text fontSize={30} mt={2}>
+          {" "}
+          kwh
+        </Text>
+      </HStack>
     </Pressable>
   );
 };
