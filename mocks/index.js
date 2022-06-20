@@ -1,3 +1,10 @@
+import React from "react";
+//icons
+import CardIcon from "../assets/card-payment.svg";
+import BankTransferIcon from "../assets/transfer-payment.svg";
+import CryptoIcon from "../assets/crypto-payment.svg";
+import USSDIcon from "../assets/ussd-payment.svg";
+
 export const linedata = {
   labels: ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"],
   datasets: [
@@ -52,5 +59,30 @@ export const transactions = [
       no: 37144433351,
       icon: "../assets/avatar.png",
     },
+  },
+];
+
+export const paymentMethods = [
+  { type: "Card", icon: <CardIcon /> },
+  { type: "Bank Transfer", icon: <BankTransferIcon /> },
+  { type: "Crypto", icon: <CryptoIcon /> },
+  { type: "USSD", icon: <USSDIcon /> },
+];
+
+export const meters = [
+  {
+    name: "Chibuzor Akachukwu",
+    address: "U/Sunday Kaduna",
+    meter_no: 37144433351,
+  },
+  {
+    name: "Chibuzor Akachukwu",
+    address: "U/Sunday Kaduna",
+    meter_no: 37144433351,
+  },
+  {
+    name: "Chibuzor Akachukwu",
+    address: "U/Sunday Kaduna",
+    meter_no: 37144433351,
   },
 ];

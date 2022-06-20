@@ -1,12 +1,8 @@
 import React, { memo, useState } from "react";
 import {
-  Actionsheet,
-  Button,
   Center,
-  Heading,
   Pressable,
   Stack,
-  Text,
   useDisclose,
   View,
 } from "native-base";
@@ -15,13 +11,17 @@ import {
 import Icon from "react-native-vector-icons/Entypo";
 //components
 import BuyMeter from "./BuyMeter.js";
+
+//context
+import { PaymentTypeProvider } from "../contexts/paymentTypeContext.js";
+
 export const MeterTabIcon = memo(() => {
   const { isOpen, onClose, onOpen } = useDisclose();
 
   return (
     <View flex={1}>
       <Pressable onPress={onOpen}>
-        <Center mt={"-2"}>
+        <Center mt={"-5"}>
           <Stack
             bg={"primary.100"}
             rounded={"full"}
@@ -35,7 +35,9 @@ export const MeterTabIcon = memo(() => {
           </Stack>
         </Center>
       </Pressable>
+    <PaymentTypeProvider>
       <BuyMeter isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+   </PaymentTypeProvider>
     </View>
   );
 });

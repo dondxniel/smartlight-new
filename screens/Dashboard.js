@@ -5,12 +5,14 @@ import { LineChart } from "react-native-chart-kit";
 import { useNavigation } from "@react-navigation/native";
 
 //constants
-import { height, width } from "../constants/dims";
+import { width } from "../constants/dims";
 
 //icons
 import DashboardLineChartHeader from "../components/DashboardLineChartHeader";
 import MeterInfo from "../components/MeterInfo";
 import AddMeterButton from "../components/AddMeterButton";
+
+import powerIcon from "../assets/avatar.png";
 
 //mocks
 import { linedata } from "../mocks/";
@@ -45,9 +47,7 @@ export default function () {
         <MeterInfo
           onPress={() => navigation.navigate("meter-info")}
           key={"metercard"}
-          avatar={
-            <Image alt={"avatar"} source={require("../assets/avatar.png")} />
-          }
+          avatar={<Image alt={"avatar"} source={powerIcon} />}
           meterName={"Chinebere Emmanuel"}
           meterValue={"245.54"}
           meterNo={"37144433351"}
