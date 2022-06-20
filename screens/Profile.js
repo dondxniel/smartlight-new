@@ -7,6 +7,7 @@ import {
   Image,
   AspectRatio,
   ScrollView,
+  VStack,
 } from "native-base";
 import { secondaryColor } from "../constants/style";
 import nbStyles from "../style/nb-styles";
@@ -21,25 +22,25 @@ import AboutIcon from "../assets/profile-icons/transactions.svg";
 
 export default function ({ navigation }) {
   return (
-    <View mx={5}>
-      <View {...nbStyles.profileHeader}>
-        <View {...nbStyles.profileHeaderChild}>
-          <Heading style={{ paddingTop: 10 }}>Profile</Heading>
+    <View flex={1} mx={5}>
+      <VStack>
+        <View {...nbStyles.profileHeader}>
+          <View {...nbStyles.profileHeaderChild}>
+            <Heading style={{ paddingTop: 10 }}>Profile</Heading>
+          </View>
+          <View {...nbStyles.logoutBtnC}>
+            <Icon.Button
+              onPress={() => navigation.navigate("login")}
+              name="log-out"
+              size={20}
+              color="white"
+              backgroundColor={secondaryColor}
+              {...nbStyles.logoutBtn}
+            >
+              <Text color="white">Logout</Text>
+            </Icon.Button>
+          </View>
         </View>
-        <View {...nbStyles.logoutBtnC}>
-          <Icon.Button
-            onPress={() => navigation.navigate("login")}
-            name="log-out"
-            size={20}
-            color="white"
-            backgroundColor={secondaryColor}
-            {...nbStyles.logoutBtn}
-          >
-            <Text color="white">Logout</Text>
-          </Icon.Button>
-        </View>
-      </View>
-      <ScrollView>
         <View {...nbStyles.userDetails}>
           <View {...nbStyles.userPhoto}>
             <AspectRatio
@@ -61,8 +62,13 @@ export default function ({ navigation }) {
             <Text style={{ fontSize: 13 }}>johndoe@gmail.com</Text>
           </View>
         </View>
+      </VStack>
+      <ScrollView flex={1} bounces>
         <View my={1}>
-          <ProfileListItem text="Edit Profile">
+          <ProfileListItem
+            onPress={() => navigation.push("edit-profile")}
+            text="Edit Profile"
+          >
             <EditProfileIcon />
           </ProfileListItem>
           <ProfileListItem
@@ -78,15 +84,21 @@ export default function ({ navigation }) {
             <TransactionsIcon />
           </ProfileListItem>
           <ProfileListItem
-            onPress={() => navigation.navigate("new_password")}
+            onPress={() => navigation.push("change-password")}
             text="Change Password"
           >
             <ChangePasswordIcon />
           </ProfileListItem>
-          <ProfileListItem text="Support">
+          <ProfileListItem
+            onPress={() => navigation.push("support")}
+            text="Support"
+          >
             <SupportIcon />
           </ProfileListItem>
-          <ProfileListItem text="About SmartLight">
+          <ProfileListItem
+            onPress={() => navigation.push("about")}
+            text="About SmartLight"
+          >
             <AboutIcon />
           </ProfileListItem>
         </View>

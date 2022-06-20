@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import {
   Actionsheet,
   Box,
@@ -13,32 +13,65 @@ import {
   useDisclose,
 } from "native-base";
 
+//contexts
+import { usePaymentType } from "../contexts/paymentTypeContext";
+
+//mock data
+import { meters } from "../mocks/";
+
+//icons
+import NairaIcon from "../assets/naira-green.svg";
+
 //styles
 import nbStyles from "../style/nb-styles";
-import NairaIcon from "../assets/naira-green.svg";
-import { MeterCard } from "./MeterCard";
 import { width } from "../constants/dims";
-import PaymentActions from "./PaymentActions";
+
+//components
+import { MeterCard } from "./MeterCard";
+import ProceedActions from "./ProceedActions";
+import AddMeterButton from "./AddMeterButton";
+import AddMeterPrompt from './AddMeterPrompt'
 
 const BuyMeterModal = ({ isOpen, onClose }) => {
   const paymentBtnAction = useDisclose();
-  const [meters] = useState([
-    {
-      name: "Chibuzor Akachukwu",
-      address: "U/Sunday Kaduna",
-      meter_no: 37144433351,
+  const addMeterAction = useDisclose();
+  const [inputAmount, setInputAmount] = useState(0);
+  const [kwh, setKWH] = useState(0);
+  const { dispatch } = usePaymentType();
+
+  function handlePaymentActions() {
+    let amount = inputAmount && parseInt(inputAmount); // convert to a number
+    if (amount && amount >= 500) {
+      onClose();
+      dispatch({ type: "METER_AMOUNT", payload: amount });
+      paymentBtnAction.onOpen();
+      setInputAmount(0);
+      setKWH(0);
+    }
+    return;
+  }
+
+  const handleAddMeter = useCallback(() => {
+    onClose();
+    addMeterAction.onOpen();
+  }, []);
+
+  const handleChangeText = useCallback(
+    //handle unwanted update
+    (val) => {
+      let amount = val && parseInt(val); // convert to a number
+      const kwh = 3.791875;
+      /*
+    1kwh === N3.791875
+    xkwh === amount
+     */
+      let EQUIVALENT_KWH_ = amount / kwh;
+      setKWH(() => EQUIVALENT_KWH_);
+      setInputAmount(() => val);
     },
-    {
-      name: "Chibuzor Akachukwu",
-      address: "U/Sunday Kaduna",
-      meter_no: 37144433351,
-    },
-    {
-      name: "Chibuzor Akachukwu",
-      address: "U/Sunday Kaduna",
-      meter_no: 37144433351,
-    },
-  ]);
+    [inputAmount, kwh],
+  );
+
 
   return (
     <Box>
@@ -62,11 +95,17 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
                 contentOffset={{ x: 10, y: 10 }}
                 data={meters}
                 keyExtractor={(_, id) => id.toString()}
-                renderItem={({ item: { address, meter_no, name } }, id) => (
+                renderItem={({ item: { address, meter_no, name }, index }) => (
                   <MeterCard
                     address={address}
                     meter_no={meter_no}
                     name={name}
+                    AddMeterComponent={
+                      index ===
+                      meters.length - 1 && (
+                        <AddMeterButton onPress={handleAddMeter} />
+                      )
+                    }
                   />
                 )}
               />
@@ -78,13 +117,15 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
               <Text mt={-3}>Enter Amount</Text>
 
               <Input
+                onChangeText={handleChangeText}
+                value={inputAmount}
+                keyboardType={"numeric"}
                 mt={2}
                 backgroundColor={"#fafafa"}
                 size={"sm"}
                 borderWidth={0}
                 rounded={"2xl"}
                 width={width - 50}
-                type="text"
                 placeholder="1,000"
                 leftElement={
                   <IconButton ml={2} rounded={15} bg={"#52DDA8"}>
@@ -101,7 +142,7 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
                 rounded={"2xl"}
               >
                 <Text fontSize={"lg"} fontWeight={700}>
-                  128.6
+                  {kwh.toFixed(2)}
                 </Text>
                 <Text fontSize={"md"}> kwh</Text>
               </HStack>
@@ -116,7 +157,7 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
                 <Text>will be charged on purchase</Text>
               </HStack>
               <Button
-                onPress={paymentBtnAction.onOpen}
+                onPress={handlePaymentActions}
                 p={4}
                 {...nbStyles.logoutBtn}
                 width={width - 50}
@@ -127,7 +168,8 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
           </ScrollView>
         </Actionsheet.Content>
       </Actionsheet>
-      <PaymentActions handleProceedAction={paymentBtnAction} />
+      <ProceedActions proceedActions={paymentBtnAction} />
+    <AddMeterPrompt isOpen={addMeterAction.isOpen} onClose={addMeterAction.onClose}  />
     </Box>
   );
 };
