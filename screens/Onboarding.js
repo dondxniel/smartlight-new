@@ -1,10 +1,9 @@
-import React from 'react';
-import OnboardingContainer from '../components/OnboardingContainer';
+import React, { memo } from "react";
+import OnboardingContainer from "../components/OnboardingContainer";
 
-const Onboarding = ({ navigation }) => {
-  return (
-    <OnboardingContainer navigation={navigation} />
-  )
-}
+const Onboarding = () => {
+  console.log("testing onboarding remounting");
+  return <OnboardingContainer />;
+};
 
-export default Onboarding;
+export default memo(Onboarding);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Button, Image, ScrollView, Text, useDisclose } from "native-base";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
@@ -19,7 +19,7 @@ import LimitSuccessPrompt from "../components/LimitSuccessPrompt";
 //mocks
 import { transactions } from "../mocks/";
 
-export default function () {
+export default memo(function () {
   const navigation = useNavigation();
   const { isOpen, onClose, onOpen } = useDisclose();
   const [openOnLimitSuccess, setOpenOnLimitSuccess] = React.useState(false);
@@ -121,4 +121,4 @@ export default function () {
       </ScrollView>
     </ParallaxScrollView>
   );
-}
+});

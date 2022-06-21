@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { Avatar, Button, Center, Heading, Modal, Text } from "native-base";
 import FaIcon from "react-native-vector-icons/FontAwesome";
 
-export default function (props) {
+export default memo(function (props) {
   return (
     <Modal {...props}>
       <Modal.Content
@@ -38,4 +38,4 @@ export default function (props) {
       </Center>
     </Modal>
   );
-}
+});

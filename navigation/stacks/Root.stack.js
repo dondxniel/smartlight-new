@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 
@@ -20,7 +20,7 @@ export const Stack = createNativeStackNavigator();
 const RootStack = (props) => {
   const navigation = useNavigation();
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator {...props} screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="_onboarding"
         children={(props) => <BoardingStack {...props} />}
@@ -37,20 +37,17 @@ const RootStack = (props) => {
         name="edit-profile"
         children={(props) => <EditProfile {...props} />}
       />
-  <Stack.Screen
+      <Stack.Screen
         name="change-password"
         children={(props) => <ChangePassword {...props} />}
       />
-  <Stack.Screen
+      <Stack.Screen
         name="support"
         children={(props) => <Support {...props} />}
       />
-  <Stack.Screen
-        name="about"
-        children={(props) => <About {...props} />}
-      />
-</Stack.Navigator>
+      <Stack.Screen name="about" children={(props) => <About {...props} />} />
+    </Stack.Navigator>
   );
 };
 
-export default RootStack;
+export default memo(RootStack);

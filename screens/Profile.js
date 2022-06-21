@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Icon from "react-native-vector-icons/Entypo";
 import {
   Heading,
@@ -8,10 +8,17 @@ import {
   AspectRatio,
   ScrollView,
   VStack,
+  StatusBar,
 } from "native-base";
-import { secondaryColor } from "../constants/style";
+import { useNavigation } from "@react-navigation/native";
+
+//nativebase styles
 import nbStyles from "../style/nb-styles";
+import { secondaryColor } from "../constants/style";
+
+//components
 import ProfileListItem from "../components/ProfileListItem";
+
 // icons
 import EditProfileIcon from "../assets/profile-icons/editProfile.svg";
 import MetersIcon from "../assets/profile-icons/meters.svg";
@@ -20,9 +27,11 @@ import ChangePasswordIcon from "../assets/profile-icons/changePassword.svg";
 import SupportIcon from "../assets/profile-icons/transactions.svg";
 import AboutIcon from "../assets/profile-icons/transactions.svg";
 
-export default function ({ navigation }) {
+export default memo(function () {
+  const navigation = useNavigation();
   return (
     <View flex={1} mx={5}>
+      <StatusBar hidden barStyle={"light-content"} />
       <VStack>
         <View {...nbStyles.profileHeader}>
           <View {...nbStyles.profileHeaderChild}>
@@ -105,4 +114,4 @@ export default function ({ navigation }) {
       </ScrollView>
     </View>
   );
-}
+});

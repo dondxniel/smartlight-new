@@ -1,6 +1,14 @@
-import React from "react";
+import React, { memo, useCallback, useState } from "react";
 import { ScrollView } from "react-native";
-import { Text, HStack, Box, Image, Button, useDisclose } from "native-base";
+import {
+  Text,
+  HStack,
+  Box,
+  Image,
+  Button,
+  useDisclose,
+  StatusBar,
+} from "native-base";
 import { LineChart } from "react-native-chart-kit";
 import { useNavigation } from "@react-navigation/native";
 
@@ -18,12 +26,12 @@ import powerIcon from "../assets/avatar.png";
 import { linedata } from "../mocks/";
 import AddMeterPrompt from "../components/AddMeterPrompt";
 
-export default function () {
+export default memo(function () {
   const navigation = useNavigation();
-  const [focusedVal, setFocusVal] = React.useState(0);
+  const [focusedVal, setFocusVal] = useState(0);
   const { isOpen, onClose, onOpen } = useDisclose();
 
-  const handleFocusPoint = React.useCallback((val) => {
+  const handleFocusPoint = useCallback((val) => {
     setFocusVal(val.value.toFixed(2));
   }, []);
 
@@ -35,6 +43,7 @@ export default function () {
         paddingHorizontal: 15,
       }}
     >
+      <StatusBar hidden={false} barStyle={"dark-content"} />
       <HStack space={"sm"} my={2}>
         <Text fontSize={"2xl"} letterSpacing={0.81}>
           Welcome,
@@ -97,11 +106,11 @@ export default function () {
       >
         <HStack alignItems={"center"}>
           <Text fontWeight={"semibold"} fontSize={"md"} color={"white"}>
-            Borrow Unit{" "}
+            Borrow Unit
           </Text>
           <Text color={"white"}>Coming soon</Text>
         </HStack>
       </Button>
     </ScrollView>
   );
-}
+});

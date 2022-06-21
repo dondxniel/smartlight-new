@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import {
   Actionsheet,
   Box,
@@ -30,7 +30,7 @@ import { width } from "../constants/dims";
 import { MeterCard } from "./MeterCard";
 import ProceedActions from "./ProceedActions";
 import AddMeterButton from "./AddMeterButton";
-import AddMeterPrompt from './AddMeterPrompt'
+import AddMeterPrompt from "./AddMeterPrompt";
 
 const BuyMeterModal = ({ isOpen, onClose }) => {
   const paymentBtnAction = useDisclose();
@@ -39,7 +39,7 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
   const [kwh, setKWH] = useState(0);
   const { dispatch } = usePaymentType();
 
-  function handlePaymentActions() {
+  const handlePaymentActions = useCallback(() => {
     let amount = inputAmount && parseInt(inputAmount); // convert to a number
     if (amount && amount >= 500) {
       onClose();
@@ -49,7 +49,7 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
       setKWH(0);
     }
     return;
-  }
+  }, [inputAmount, kwh]);
 
   const handleAddMeter = useCallback(() => {
     onClose();
@@ -72,6 +72,7 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
     [inputAmount, kwh],
   );
 
+  console.log("buy meter mount");
 
   return (
     <Box>
@@ -101,8 +102,7 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
                     meter_no={meter_no}
                     name={name}
                     AddMeterComponent={
-                      index ===
-                      meters.length - 1 && (
+                      index === meters.length - 1 && (
                         <AddMeterButton onPress={handleAddMeter} />
                       )
                     }
@@ -169,7 +169,10 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
         </Actionsheet.Content>
       </Actionsheet>
       <ProceedActions proceedActions={paymentBtnAction} />
-    <AddMeterPrompt isOpen={addMeterAction.isOpen} onClose={addMeterAction.onClose}  />
+      <AddMeterPrompt
+        isOpen={addMeterAction.isOpen}
+        onClose={addMeterAction.onClose}
+      />
     </Box>
   );
 };

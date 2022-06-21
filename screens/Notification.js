@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Heading, View, FlatList, ScrollView } from "native-base";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
 
 import NotificationItem from "../components/NotificationItem";
-import StickyHeader from "../components/StickyHeader";
 import nbStyles from "../style/nb-styles";
 
-export default function () {
+export default memo(function () {
   const [notifications] = useState([
     {
       i: 1,
@@ -56,4 +55,4 @@ export default function () {
       />
     </View>
   );
-}
+});
