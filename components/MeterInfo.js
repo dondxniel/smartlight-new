@@ -16,7 +16,7 @@ const MeterCard = ({
       p={5}
       background={"#fff"}
       rounded={"2xl"}
-      height={162}
+      height={horizontal ? 145 : 160}
       flex={0.9}
     >
       <Stack
@@ -25,7 +25,7 @@ const MeterCard = ({
         direction={horizontal && "row"}
       >
         {avatar && (
-          <Avatar w={28} h={28} bgColor={"#ffffff"} shadow={2}>
+          <Avatar w={30} h={30} bgColor={"#ffffff"} shadow={2}>
             {avatar}
           </Avatar>
         )}
