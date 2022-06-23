@@ -39,11 +39,10 @@ export default memo(function () {
     <ScrollView
       bounces
       contentContainerStyle={{
-        paddingVertical: 10,
         paddingHorizontal: 15,
       }}
     >
-      <StatusBar hidden={false} barStyle={"dark-content"} />
+      <StatusBar translucent={false} barStyle={"dark-content"} />
       <HStack space={"sm"} my={2}>
         <Text fontSize={"2xl"} letterSpacing={0.81}>
           Welcome,
