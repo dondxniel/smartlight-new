@@ -7,15 +7,23 @@ import SVGIconBack from "../assets/back.svg";
 
 const StickyHeader = (props) => {
   return (
-    <HStack zIndex={3000} px={5} py={2} bgColor={"warmGray.100"}>
+    <HStack
+      alignItems={"center"}
+      zIndex={3000}
+      px={4}
+      py={0}
+      bgColor={"warmGray.100"}
+    >
       {props.navigation && (
         <Button
           onPress={() => props.navigation.goBack()}
-          width={12}
+          h={10}
+          w={10}
           bg={"#fff"}
           _pressed={{ bg: "transparent" }}
-          height={12}
-          rounded={"2xl"}
+          rounded={"xl"}
+          shadow={1.99}
+          style={{ shadowOpacity: 0.5 }}
         >
           <SVGIconBack />
         </Button>

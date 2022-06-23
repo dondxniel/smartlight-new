@@ -1,9 +1,17 @@
 import React, { memo } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Button, Image, ScrollView, Text, useDisclose } from "native-base";
+import {
+  Button,
+  Image,
+  ScrollView,
+  Text,
+  useDisclose,
+  View,
+} from "native-base";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
 
 //icons
+import PowerIcon from "../assets/meter-avatar.svg";
 
 //components
 import TransactionOverviewChart from "../components/TransactionOverviewChart";
@@ -13,8 +21,6 @@ import StickyHeader from "../components/StickyHeader";
 import MeterLimitPrompt from "../components/MeterLimitPrompt";
 import LimitErrorPrompt from "../components/LimitErrorPrompt";
 import LimitSuccessPrompt from "../components/LimitSuccessPrompt";
-
-//constants
 
 //mocks
 import { transactions } from "../mocks/";
@@ -43,22 +49,12 @@ export default memo(function () {
   }, []);
 
   return (
-    <ParallaxScrollView
-      key={"stickyscroll"}
-      contentBackgroundColor="transparent"
-      backgroundColor="transparent"
-      parallaxHeaderHeight={65}
-      renderFixedHeader={() => <StickyHeader navigation={navigation} />}
-    >
+    <View flex={1}>
+      <StickyHeader navigation={navigation} headerTitle={"Statistics"} />
       {/* meter card component */}
-      <ScrollView bounces py={2} px={4}>
+      <ScrollView bounces px={4}>
         <MeterInfo
-          avatar={
-            <Image
-              alt={"meter info"}
-              source={require("../assets/avatar.png")}
-            />
-          }
+          avatar={<PowerIcon width={24} height={24} />}
           horizontal
           meterName={"Chinebere Emmanuel"}
           meterValue={"245.54"}
@@ -119,6 +115,6 @@ export default memo(function () {
           />
         ))}
       </ScrollView>
-    </ParallaxScrollView>
+    </View>
   );
 });

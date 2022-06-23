@@ -8,6 +8,7 @@ import {
   ScrollView,
   Text,
   useDisclose,
+  View,
 } from "native-base";
 import { LineChart } from "react-native-chart-kit";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
@@ -58,14 +59,9 @@ export default memo(function () {
   }, []);
 
   return (
-    <ParallaxScrollView
-      key={"stickyscroll"}
-      contentBackgroundColor="transparent"
-      backgroundColor="transparent"
-      parallaxHeaderHeight={60}
-      renderFixedHeader={() => <StickyHeader navigation={navigation} />}
-    >
-      <ScrollView px={4} py={2} bounces>
+    <View flex={1}>
+      <StickyHeader navigation={navigation} />
+      <ScrollView px={4} bounces>
         {/* meter card component */}
 
         <MeterInfo
@@ -162,6 +158,6 @@ export default memo(function () {
           />
         ))}
       </ScrollView>
-    </ParallaxScrollView>
+    </View>
   );
 });
