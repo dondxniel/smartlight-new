@@ -15,7 +15,6 @@ import nbStyles from "../style/nb-styles";
 
 const Login = () => {
   const navigation = useNavigation();
-  console.log("testing login remounting");
   const signup = useCallback(() => {
     navigation.navigate("signup");
   }, []);

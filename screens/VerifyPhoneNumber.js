@@ -9,7 +9,6 @@ import VerifyPhoneNumberForm from "../components/VerifyPhoneNumberForm";
 const VerifyPhoneNumber = ({ navigation }) => {
   const login = () => {
     navigation.navigate("login");
-    console.log("testing component rerender...");
   };
   return (
     <KeyboardAwareScrollView>

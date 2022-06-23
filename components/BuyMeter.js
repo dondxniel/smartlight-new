@@ -72,8 +72,6 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
     [inputAmount, kwh],
   );
 
-  console.log("buy meter mount");
-
   return (
     <Box>
       <Actionsheet isOpen={isOpen} onClose={onClose}>

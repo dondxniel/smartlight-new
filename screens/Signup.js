@@ -16,7 +16,6 @@ import rnStyles from "../style/rn-styles";
 import nbStyles from "../style/nb-styles";
 
 const Signup = () => {
-  console.log("testing signup remouting");
   const navigation = useNavigation();
   const login = useCallback(() => {
     navigation.navigate("login");
