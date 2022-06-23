@@ -29,13 +29,12 @@ const Signup = () => {
       }}
       // behavior="padding"
     >
-      <StatusBar translucent backgroundColor={"transparent"} />
       <BgImage />
       <View style={{ ...rnStyles.backgroundOverlay }}>
         <Card
           style={{
             ...rnStyles.formCard(1.1),
-            paddingBottom: 120,
+            paddingBottom: 100,
           }}
         >
           <Heading>Create Account</Heading>
