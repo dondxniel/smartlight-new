@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { View, Card, Heading, Text, Button } from "native-base";
 import { ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -7,9 +7,9 @@ import { height } from "../constants/dims";
 import VerifyPhoneNumberForm from "../components/VerifyPhoneNumberForm";
 
 const VerifyPhoneNumber = ({ navigation }) => {
-  const login = () => {
+  const login = useCallback(() => {
     navigation.navigate("login");
-  };
+  },[]);
   return (
     <KeyboardAwareScrollView>
       <View bg="primary.100" h={height}>

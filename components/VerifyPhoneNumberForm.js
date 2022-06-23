@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   View,
   FormControl,
@@ -14,15 +14,13 @@ const inputStyle = {
   bgColor: "#fafafa",
   h: 58,
   borderColor: "#fafafa",
-  type: "tel",
 };
 const inputGroupStyle = {
   bgColor: "#fafafa",
   h: 58,
   w: 58,
   borderColor: "#fafafa",
-  type: "number",
-  rounded: "lg",
+  rounded: "2xl",
   placeholder: "_",
   variant: "rounded",
   keyboardType: "numeric",
@@ -34,6 +32,10 @@ const inputGroupStyle = {
   },
 };
 const VerifyPhoneNumber = () => {
+  const firstRef = useRef(0)
+  const secondRef = useRef(0)
+  const thirdRef = useRef(0)
+  const fourthRef = useRef(0)
   return (
     <Formik
       initialValues={{ countryCode: "+234", phonenumber: "" }}
@@ -78,7 +80,7 @@ const VerifyPhoneNumber = () => {
                   mt={1}
                   onValueChange={handleChange("countryCode")}
                   _selectedItem={{
-                    bg: "teal.100",
+                    bg: "gray.100",
                     textAlign: "center",
                   }}
                 >
@@ -103,11 +105,17 @@ const VerifyPhoneNumber = () => {
             </Button>
           </FormControl>
           <FormControl>
-            <HStack space={"lg"}>
-              <Input {...inputGroupStyle} />
-              <Input {...inputGroupStyle} />
-              <Input {...inputGroupStyle} />
-              <Input {...inputGroupStyle} />
+            <HStack space={"sm"}>
+              <Input ref={firstRef} onChangeText={() => {
+                secondRef.current.focus();
+              }} {...inputGroupStyle} />
+              <Input ref={secondRef} onChangeText={() => {
+                thirdRef.current.focus()
+              }} {...inputGroupStyle} />
+              <Input ref={thirdRef} onChangeText={() => {
+                fourthRef.current.focus()
+              }} {...inputGroupStyle} />
+              <Input ref={fourthRef} {...inputGroupStyle} />
             </HStack>
             <Button p={4} rounded={"2xl"} marginY={4} onPress={handleSubmit}>
               <Text fontWeight={900} color={"#fff"}>
