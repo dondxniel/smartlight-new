@@ -138,10 +138,10 @@ export default {
     },
   },
   logoutBtnC: {
-    style: {
-      flexDirection: "row",
-      // justifyContent: 'end'
-    },
+    h: 40,
+    flexDirection: "row",
+    alignItems: "center",
+    space: "sm",
   },
   logoutBtn: {
     borderRadius: 10,
@@ -269,13 +269,13 @@ export default {
       fontSize: "xl",
       style: {
         color: textColorPrimary,
-        fontFamily: "GTWalsheimProMedium",
+        fontFamily: "GTWalsheimPro-Medium",
       },
     },
     info: {
       style: {
         color: textColorPrimary,
-        fontFamily: "GTWalsheimProMedium",
+        fontFamily: "GTWalsheimPro-Medium",
       },
     },
     date: {

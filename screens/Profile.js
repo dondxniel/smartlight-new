@@ -9,6 +9,9 @@ import {
   ScrollView,
   VStack,
   StatusBar,
+  Button,
+  HStack,
+  Box,
 } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 
@@ -20,6 +23,8 @@ import { secondaryColor } from "../constants/style";
 import ProfileListItem from "../components/ProfileListItem";
 
 // icons
+import LogoutIcon from "../assets/profile-icons/logout.svg";
+import UserIcon from "../assets/profile-icons/user-edit.svg";
 import EditProfileIcon from "../assets/profile-icons/editProfile.svg";
 import MetersIcon from "../assets/profile-icons/meters.svg";
 import TransactionsIcon from "../assets/profile-icons/transactions.svg";
@@ -31,24 +36,28 @@ export default memo(function () {
   const navigation = useNavigation();
   return (
     <View flex={1} mx={5}>
-      <StatusBar hidden barStyle={"light-content"} />
+      {/* <StatusBar hidden barStyle={"light-content"} /> */}
       <VStack>
         <View {...nbStyles.profileHeader}>
           <View {...nbStyles.profileHeaderChild}>
             <Heading style={{ paddingTop: 10 }}>Profile</Heading>
           </View>
-          <View {...nbStyles.logoutBtnC}>
-            <Icon.Button
+          <HStack {...nbStyles.logoutBtnC}>
+            <Box mt={2} mr={2}>
+              <UserIcon />
+            </Box>
+            <Button
               onPress={() => navigation.navigate("login")}
-              name="log-out"
-              size={20}
               color="white"
-              backgroundColor={secondaryColor}
+              backgroundColor={"red.500"}
               {...nbStyles.logoutBtn}
             >
-              <Text color="white">Logout</Text>
-            </Icon.Button>
-          </View>
+              <HStack space={"sm"}>
+                <LogoutIcon />
+                <Text color="white">Logout</Text>
+              </HStack>
+            </Button>
+          </HStack>
         </View>
         <View {...nbStyles.userDetails}>
           <View {...nbStyles.userPhoto}>
