@@ -5,15 +5,13 @@ import {
   Button,
   Center,
   Heading,
-  HStack,
-  Input,
-  Pressable,
   ScrollView,
   Stack,
   Text,
   useDisclose,
   View,
 } from "native-base";
+import { useClipboard } from "@react-native-clipboard/clipboard";
 
 import CryptoQRCodeIcon from "../assets/crypto-qrcode.svg";
 import CopyToClipIcon from "../assets/copytoclip.svg";
@@ -31,6 +29,7 @@ const PaymentComponent = ({ isOpen, onClose }) => {
   } = usePaymentType();
   const paymentAction = useDisclose();
   const [paymentPrompt, setPaymentPrompt] = useState("");
+  const [data, setString] = useClipboard();
   const handlePayment = useCallback(() => {
     onClose();
     if (!true) {
@@ -39,6 +38,10 @@ const PaymentComponent = ({ isOpen, onClose }) => {
       setPaymentPrompt("unsuccesful");
     }
     paymentAction.onOpen();
+  }, []);
+
+  const handleCopy = useCallback(() => {
+    setString("0xF5D152C0C7....EAB3E8F");
   }, []);
 
   return (
@@ -76,10 +79,10 @@ const PaymentComponent = ({ isOpen, onClose }) => {
                   space={"lg"}
                   flexDir={"row"}
                 >
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={handleCopy}>
                     <Text>0xF5D152C0C7....EAB3E8F</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={handleCopy}>
                     <Center>
                       <CopyToClipIcon />
                     </Center>

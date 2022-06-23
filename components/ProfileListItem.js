@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { View, Text } from "native-base";
 import { TouchableOpacity } from "react-native";
 
@@ -23,4 +23,4 @@ const ProfileListItem = ({ children, onPress, text }) => {
   );
 };
 
-export default ProfileListItem;
+export default memo(ProfileListItem);

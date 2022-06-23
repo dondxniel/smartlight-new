@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 //navigations
 import { Stack } from "./Root.stack";
@@ -13,7 +13,7 @@ import Otp from "../../screens/Otp";
 import NewPassword from "../../screens/NewPassword";
 
 const BoardingStack = Stack;
-export default function() {
+export default memo(function () {
   return (
     <BoardingStack.Navigator screenOptions={{ headerShown: false }}>
       {/* --- first screen --- */}
@@ -27,12 +27,24 @@ export default function() {
       <BoardingStack.Screen
         options={{
           animation: "slide_from_bottom",
+          statusBarAnimation: "slide",
         }}
         name="login"
-        children={(props) => <LoginScreen {...props} />}
+        component={LoginScreen}
       />
 
       {/* --- third screen --- */}
+
+      <BoardingStack.Screen
+        options={{
+          animation: "slide_from_right",
+          statusBarAnimation: "slide",
+        }}
+        name="signup"
+        component={SignupScreen}
+      />
+
+      {/* --- fourth screen --- */}
 
       <BoardingStack.Screen
         options={{
@@ -40,16 +52,6 @@ export default function() {
         }}
         name="verifyphonenumber"
         children={(props) => <VerifyPhoneNumberScreen {...props} />}
-      />
-
-      {/* --- fourth screen --- */}
-
-      <BoardingStack.Screen
-        options={{
-          animation: "slide_from_bottom",
-        }}
-        name="signup"
-        children={(props) => <SignupScreen {...props} />}
       />
 
       {/* fifth screen */}
@@ -77,4 +79,4 @@ export default function() {
       />
     </BoardingStack.Navigator>
   );
-}
+});

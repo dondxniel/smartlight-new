@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "native-base";
 import { width } from "../constants/dims";
+import nbStyles from "../style/nb-styles";
 
 const ActionsheetComp = (props) => {
   const [meterLimit, setMeterLimit] = React.useState("");
@@ -18,11 +19,11 @@ const ActionsheetComp = (props) => {
 
   return (
     <Actionsheet {...props}>
-      <Actionsheet.Content width={width}>
-        <Actionsheet.Item __pressed={{ backgroundColor: "transparent" }}>
+      <Actionsheet.Content {...nbStyles.actionSheet.actionSheetContent}>
+        <Actionsheet.Item {...nbStyles.actionSheet.actionSheetItem}>
           <Heading>Set Meter Limit</Heading>
         </Actionsheet.Item>
-        <Actionsheet.Item __pressed={{ backgroundColor: "transparent" }}>
+        <Actionsheet.Item {...nbStyles.actionSheet.actionSheetItem}>
           <ScrollView width={width - 50}>
             <Text my={1}>Limit Timeframe</Text>
             <Select

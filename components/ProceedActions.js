@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   Actionsheet,
   Box,
@@ -104,4 +104,4 @@ function ProceedActions({ proceedActions }) {
   );
 }
 
-export default ProceedActions;
+export default memo(ProceedActions);

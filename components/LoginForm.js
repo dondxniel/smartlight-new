@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { View, FormControl, Input, Button, Text, useToast } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 import Icon from "react-native-vector-icons/FontAwesome";
+
 import nbStyles from "../style/nb-styles";
-import { useNavigation } from "@react-navigation/native";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +16,7 @@ const LoginForm = () => {
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
           if (true) {
-            navigation.navigate("_dashboard");
+            navigation.push("_dashboard");
           }
         }}
         validateOnChange={false}
@@ -131,4 +132,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default memo(LoginForm);

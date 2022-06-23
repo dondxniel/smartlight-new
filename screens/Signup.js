@@ -1,63 +1,58 @@
-import React from 'react';
-import { View, Card, Heading, Text, Button, KeyboardAvoidingView } from 'native-base';
-import { ImageBackground } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import React, { memo, useCallback } from "react";
+import { View, Card, Heading, Text, Button, StatusBar } from "native-base";
+import { ImageBackground } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useNavigation } from "@react-navigation/native";
 
-import { height } from '../constants/dims';
-import SignupForm from '../components/SignupForm';
-import OAuthLinks from '../components/OAuthLinks';
-import rnStyles from '../style/rn-styles';
-import nbStyles from '../style/nb-styles';
+//images
+import BgImage from "../assets/signup-bg.svg";
 
-const Signup = ({ navigation }) => {
-  const login = () => {
-    navigation.navigate('login');
-  }
+//components
+import SignupForm from "../components/SignupForm";
+import OAuthLinks from "../components/OAuthLinks";
+
+import { height } from "../constants/dims";
+import rnStyles from "../style/rn-styles";
+import nbStyles from "../style/nb-styles";
+
+const Signup = () => {
+  const navigation = useNavigation();
+  const login = useCallback(() => {
+    navigation.navigate("login");
+  }, []);
   return (
-    <KeyboardAwareScrollView behavior='height'>
-      <View
-        bg='primary.100'
-        h={height}
-      >
-        <ImageBackground
-          source={require('../assets/bg1.png')}
-          style={{ ...rnStyles.imageBackground }}
-        />
-        <View
-          style={{ ...rnStyles.backgroundOverlay }}
+    <KeyboardAwareScrollView
+      scrollToOverflowEnabled={true}
+      contentContainerStyle={{
+        height: height + 100,
+        backgroundColor: "#5961E0",
+      }}
+      // behavior="padding"
+    >
+      <BgImage />
+      <View style={{ ...rnStyles.backgroundOverlay }}>
+        <Card
+          style={{
+            ...rnStyles.formCard(1.1),
+            paddingBottom: 100,
+          }}
         >
-          <Card
-            style={{
-              ...rnStyles.formCard(1.1),
-              paddingBottom: 120
-            }}
-          >
-            <Heading>Create Account</Heading>
-            <View
-              mt={10}
-            >
-              <SignupForm navigation={navigation} />
-              <OAuthLinks />
-              <View
-                {...nbStyles.authAlt}
-              >
-                <Text>Already joined?</Text>
-                <Text style={{ paddingLeft: 9 }}>|</Text>
-                <Button
-                  {...nbStyles.altButton}
-                  onPress={login}
-                >
-                  Login now
-                </Button>
-              </View>
+          <Heading>Create Account</Heading>
+          <View mt={10}>
+            <SignupForm />
+            <OAuthLinks />
+            <View {...nbStyles.authAlt}>
+              <Text>Already joined?</Text>
+              <Text style={{ paddingLeft: 9 }}>|</Text>
+              <Button {...nbStyles.altButton} onPress={login}>
+                Login now
+              </Button>
             </View>
-          </Card>
-
-        </View>
-
+          </View>
+        </Card>
       </View>
     </KeyboardAwareScrollView>
-  )
-}
+  );
+};
 
-export default Signup
+export default memo(Signup);
