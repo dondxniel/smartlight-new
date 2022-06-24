@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   Box,
@@ -8,6 +8,7 @@ import {
   ScrollView,
   Text,
   useDisclose,
+  View,
 } from "native-base";
 import { LineChart } from "react-native-chart-kit";
 import ParallaxScrollView from "react-native-parallax-scroll-view";
@@ -26,7 +27,7 @@ import LimitErrorPrompt from "../components/LimitErrorPrompt";
 import LimitSuccessPrompt from "../components/LimitSuccessPrompt";
 import StickyHeader from "../components/StickyHeader";
 
-export default function () {
+export default memo(function () {
   const navigation = useNavigation();
   const { isOpen, onClose, onOpen } = useDisclose();
   const [focusedVal, setFocusVal] = React.useState(0);
@@ -38,11 +39,13 @@ export default function () {
     setFocusVal(val.value.toFixed(2));
   }, []);
 
-  const handleToggleLimitSuccess = React.useCallback(() =>
-    setOpenOnLimitSuccess((val) => !val),
+  const handleToggleLimitSuccess = React.useCallback(
+    () => setOpenOnLimitSuccess((val) => !val),
+    [],
   );
-  const handleToggleLimitError = React.useCallback(() =>
-    setOpenOnLimitError((val) => !val),
+  const handleToggleLimitError = React.useCallback(
+    () => setOpenOnLimitError((val) => !val),
+    [],
   );
 
   const handleMeterLimitSubmit = React.useCallback(() => {
@@ -56,14 +59,9 @@ export default function () {
   }, []);
 
   return (
-    <ParallaxScrollView
-      key={"stickyscroll"}
-      contentBackgroundColor="transparent"
-      backgroundColor="transparent"
-      parallaxHeaderHeight={65}
-      renderFixedHeader={() => <StickyHeader navigation={navigation} />}
-    >
-      <ScrollView px={4} py={2} bounces>
+    <View flex={1}>
+      <StickyHeader navigation={navigation} />
+      <ScrollView px={4} bounces>
         {/* meter card component */}
 
         <MeterInfo
@@ -160,6 +158,6 @@ export default function () {
           />
         ))}
       </ScrollView>
-    </ParallaxScrollView>
+    </View>
   );
-}
+});

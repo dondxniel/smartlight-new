@@ -1,27 +1,37 @@
-import React from "react";
+import React, { memo, useCallback, useState } from "react";
 import { ScrollView } from "react-native";
-import { Text, HStack, Box, Image, Button, useDisclose } from "native-base";
+import {
+  Text,
+  HStack,
+  Box,
+  Image,
+  Button,
+  useDisclose,
+  StatusBar,
+} from "native-base";
 import { LineChart } from "react-native-chart-kit";
 import { useNavigation } from "@react-navigation/native";
 
 //constants
-import { height, width } from "../constants/dims";
+import { width } from "../constants/dims";
 
 //icons
 import DashboardLineChartHeader from "../components/DashboardLineChartHeader";
 import MeterInfo from "../components/MeterInfo";
 import AddMeterButton from "../components/AddMeterButton";
 
+import powerIcon from "../assets/avatar.png";
+
 //mocks
 import { linedata } from "../mocks/";
 import AddMeterPrompt from "../components/AddMeterPrompt";
 
-export default function () {
+export default memo(function () {
   const navigation = useNavigation();
-  const [focusedVal, setFocusVal] = React.useState(0);
+  const [focusedVal, setFocusVal] = useState(0);
   const { isOpen, onClose, onOpen } = useDisclose();
 
-  const handleFocusPoint = React.useCallback((val) => {
+  const handleFocusPoint = useCallback((val) => {
     setFocusVal(val.value.toFixed(2));
   }, []);
 
@@ -29,10 +39,10 @@ export default function () {
     <ScrollView
       bounces
       contentContainerStyle={{
-        paddingVertical: 10,
         paddingHorizontal: 15,
       }}
     >
+      <StatusBar translucent={false} barStyle={"dark-content"} />
       <HStack space={"sm"} my={2}>
         <Text fontSize={"2xl"} letterSpacing={0.81}>
           Welcome,
@@ -45,9 +55,7 @@ export default function () {
         <MeterInfo
           onPress={() => navigation.navigate("meter-info")}
           key={"metercard"}
-          avatar={
-            <Image alt={"avatar"} source={require("../assets/avatar.png")} />
-          }
+          avatar={<Image alt={"avatar"} source={powerIcon} />}
           meterName={"Chinebere Emmanuel"}
           meterValue={"245.54"}
           meterNo={"37144433351"}
@@ -97,11 +105,11 @@ export default function () {
       >
         <HStack alignItems={"center"}>
           <Text fontWeight={"semibold"} fontSize={"md"} color={"white"}>
-            Borrow Unit{" "}
+            Borrow Unit
           </Text>
           <Text color={"white"}>Coming soon</Text>
         </HStack>
       </Button>
     </ScrollView>
   );
-}
+});

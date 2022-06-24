@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { Text, View } from "native-base";
 
-export default function (props) {
+export default memo(function () {
   return (
     <View>
       <Text>Hello</Text>
     </View>
   );
-}
+});

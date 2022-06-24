@@ -1,45 +1,41 @@
-import React from 'react';
-import { View, Card, Heading, Text, Button } from 'native-base';
-import { ImageBackground } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import React, { memo, useCallback } from "react";
+import { View, Card, Heading, Text, Button } from "native-base";
+import { ImageBackground } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { height } from '../constants/dims';
-import VerifyPhoneNumberForm from '../components/VerifyPhoneNumberForm';
+import { height } from "../constants/dims";
+import VerifyPhoneNumberForm from "../components/VerifyPhoneNumberForm";
 
 const VerifyPhoneNumber = ({ navigation }) => {
-  const login = () => {
-    navigation.navigate('login');
-    console.log("testing component rerender...")
-  }
+  const login = useCallback(() => {
+    navigation.navigate("login");
+  },[]);
   return (
     <KeyboardAwareScrollView>
-      <View
-        bg='primary.100'
-        h={height}
-      >
+      <View bg="primary.100" h={height}>
         <ImageBackground
-          source={require('../assets/bg3.png')}
+          source={require("../assets/bg3.png")}
           style={{
             height: height / 2,
-            backgroundPosition: 'top',
-            backgroundSize: '50%',
+            backgroundPosition: "top",
+            backgroundSize: "50%",
             zIndex: -2,
-            position: 'relative',
-            top: 0
+            position: "relative",
+            top: 0,
           }}
         />
         <View
           style={{
             zIndex: 1,
-            position: 'absolute',
+            position: "absolute",
             left: 0,
-            right: 0
+            right: 0,
           }}
         >
           <Card
-            height='auto'
+            height="auto"
             style={{
-              backgroundColor: '#fff',
+              backgroundColor: "#fff",
               marginTop: height / 2.2,
               marginLeft: 7,
               marginRight: 7,
@@ -48,21 +44,18 @@ const VerifyPhoneNumber = ({ navigation }) => {
               borderBottomRightRadius: 0,
               paddingTop: 30,
               paddingLeft: 25,
-              paddingRight: 25
+              paddingRight: 25,
             }}
           >
             <Heading>Verify Phone Number</Heading>
-            <View
-              mt={10}
-            >
+            <View mt={10}>
               <VerifyPhoneNumberForm />
             </View>
           </Card>
-
         </View>
       </View>
     </KeyboardAwareScrollView>
-  )
-}
+  );
+};
 
-export default VerifyPhoneNumber
+export default memo(VerifyPhoneNumber);
