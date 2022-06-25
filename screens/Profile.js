@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import Icon from "react-native-vector-icons/Entypo";
 import {
+
   Heading,
   View,
   Text,
@@ -31,6 +32,7 @@ import TransactionsIcon from "../assets/profile-icons/transactions.svg";
 import ChangePasswordIcon from "../assets/profile-icons/changePassword.svg";
 import SupportIcon from "../assets/profile-icons/transactions.svg";
 import AboutIcon from "../assets/profile-icons/transactions.svg";
+
 
 export default memo(function () {
   const navigation = useNavigation();
