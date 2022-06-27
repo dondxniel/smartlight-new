@@ -51,7 +51,7 @@ export default memo(function () {
           Abijah
         </Text>
       </HStack>
-      <HStack my={2} space={"lg"}>
+      <HStack my={2} space={"sm"}>
         <MeterInfo
           onPress={() => navigation.navigate("meter-info")}
           key={"metercard"}
