@@ -44,7 +44,7 @@ export default memo(function () {
     <BottomTab.Navigator
       tabBarStyle={{
         width,
-        height: 70,
+        height: 55,
       }}
     >
       <BottomTab.Screen

@@ -32,7 +32,7 @@ import ProceedActions from "./ProceedActions";
 import AddMeterButton from "./AddMeterButton";
 import AddMeterPrompt from "./AddMeterPrompt";
 
-const BuyMeterModal = ({ isOpen, onClose }) => {
+const BuyMeter = ({ isOpen, onClose }) => {
   const paymentBtnAction = useDisclose();
   const addMeterAction = useDisclose();
   const [inputAmount, setInputAmount] = useState(0);
@@ -72,6 +72,29 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
     [inputAmount, kwh],
   );
 
+  const [selectedIndex, setSelectionIndex] = useState(null);
+
+  const renderItem = useCallback(
+    ({ item: { address, meter_no, name }, index }) => {
+      let isSelected = index === selectedIndex ? true : false;
+      return (
+        <MeterCard
+          onPress={() => setSelectionIndex(index)}
+          isSelected={isSelected}
+          address={address}
+          meter_no={meter_no}
+          name={name}
+          AddMeterComponent={
+            index === meters.length - 1 && (
+              <AddMeterButton onPress={handleAddMeter} />
+            )
+          }
+        />
+      );
+    },
+    [selectedIndex],
+  );
+
   return (
     <Box>
       <Actionsheet isOpen={isOpen} onClose={onClose}>
@@ -94,18 +117,8 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
                 contentOffset={{ x: 10, y: 10 }}
                 data={meters}
                 keyExtractor={(_, id) => id.toString()}
-                renderItem={({ item: { address, meter_no, name }, index }) => (
-                  <MeterCard
-                    address={address}
-                    meter_no={meter_no}
-                    name={name}
-                    AddMeterComponent={
-                      index === meters.length - 1 && (
-                        <AddMeterButton onPress={handleAddMeter} />
-                      )
-                    }
-                  />
-                )}
+                renderItem={renderItem}
+                extraData={selectedIndex}
               />
             </Actionsheet.Item>
             <Actionsheet.Item
@@ -175,5 +188,4 @@ const BuyMeterModal = ({ isOpen, onClose }) => {
   );
 };
 
-const BuyMeter = memo(BuyMeterModal);
-export default BuyMeter;
+export default memo(BuyMeter);

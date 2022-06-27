@@ -32,10 +32,10 @@ const inputGroupStyle = {
   },
 };
 const VerifyPhoneNumber = () => {
-  const firstRef = useRef(0)
-  const secondRef = useRef(0)
-  const thirdRef = useRef(0)
-  const fourthRef = useRef(0)
+  const firstRef = useRef(0);
+  const secondRef = useRef(0);
+  const thirdRef = useRef(0);
+  const fourthRef = useRef(0);
   return (
     <Formik
       initialValues={{ countryCode: "+234", phonenumber: "" }}
@@ -98,7 +98,7 @@ const VerifyPhoneNumber = () => {
               variant={"unstyled"}
               _text={{
                 fontWeight: "bold",
-                color: "primary.100",
+                color: "primary.500",
               }}
             >
               Sent OTP
@@ -106,15 +106,27 @@ const VerifyPhoneNumber = () => {
           </FormControl>
           <FormControl>
             <HStack space={"sm"}>
-              <Input ref={firstRef} onChangeText={() => {
-                secondRef.current.focus();
-              }} {...inputGroupStyle} />
-              <Input ref={secondRef} onChangeText={() => {
-                thirdRef.current.focus()
-              }} {...inputGroupStyle} />
-              <Input ref={thirdRef} onChangeText={() => {
-                fourthRef.current.focus()
-              }} {...inputGroupStyle} />
+              <Input
+                ref={firstRef}
+                onChangeText={() => {
+                  secondRef.current.focus();
+                }}
+                {...inputGroupStyle}
+              />
+              <Input
+                ref={secondRef}
+                onChangeText={() => {
+                  thirdRef.current.focus();
+                }}
+                {...inputGroupStyle}
+              />
+              <Input
+                ref={thirdRef}
+                onChangeText={() => {
+                  fourthRef.current.focus();
+                }}
+                {...inputGroupStyle}
+              />
               <Input ref={fourthRef} {...inputGroupStyle} />
             </HStack>
             <Button p={4} rounded={"2xl"} marginY={4} onPress={handleSubmit}>
