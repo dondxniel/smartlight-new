@@ -49,12 +49,12 @@ function TabNavigator({
             shadowColor: "transparent",
             backfaceVisibility: "hidden",
           },
-          tabBarStyle
+          tabBarStyle,
         ]}
       >
         {state.routes.map((route, idx) => {
           const isFocused = state.index === idx;
-          const color = isFocused ? "primary.100" : "gray.400";
+          const color = isFocused ? "primary.500" : "gray.400";
           return (
             <Pressable
               key={route.key}
@@ -64,6 +64,9 @@ function TabNavigator({
                   target: route.key,
                   canPreventDefault: true,
                 });
+                if (idx === 2) {
+                  return; //avoid routing to  meter screen to allow  popup modal
+                }
 
                 if (!event.defaultPrevented) {
                   navigation.dispatch({
@@ -76,15 +79,15 @@ function TabNavigator({
             >
               {isFocused
                 ? descriptors[route.key].options.activeTab || (
-                  <Center>
-                    <Text color={color}>{route.name} </Text>
-                  </Center>
-                )
+                    <Center>
+                      <Text color={color}>{route.name} </Text>
+                    </Center>
+                  )
                 : descriptors[route.key].options.inActiveTab || (
-                  <Center>
-                    <Text color={color}>{route.name}</Text>
-                  </Center>
-                )}
+                    <Center>
+                      <Text color={color}>{route.name}</Text>
+                    </Center>
+                  )}
             </Pressable>
           );
         })}
