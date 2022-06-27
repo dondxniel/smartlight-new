@@ -85,7 +85,7 @@ export default memo(function () {
           my={4}
           p={4}
           rounded={"2xl"}
-          bgColor={"primary.100"}
+          bgColor={"primary.500"}
         >
           <Text fontSize={"lg"} fontWeight="semibold" color={"#fff"}>
             Set limit

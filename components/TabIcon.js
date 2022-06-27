@@ -1,11 +1,5 @@
 import React, { memo, useState } from "react";
-import {
-  Center,
-  Pressable,
-  Stack,
-  useDisclose,
-  View,
-} from "native-base";
+import { Center, Pressable, Stack, useDisclose, View } from "native-base";
 
 //icons
 import Icon from "react-native-vector-icons/Entypo";
@@ -23,7 +17,7 @@ export const MeterTabIcon = memo(() => {
       <Pressable onPress={onOpen}>
         <Center mt={"-5"}>
           <Stack
-            bg={"primary.100"}
+            bg={"primary.500"}
             rounded={"full"}
             height={"12"}
             width={"12"}
@@ -35,9 +29,9 @@ export const MeterTabIcon = memo(() => {
           </Stack>
         </Center>
       </Pressable>
-    <PaymentTypeProvider>
-      <BuyMeter isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
-   </PaymentTypeProvider>
+      <PaymentTypeProvider>
+        <BuyMeter isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+      </PaymentTypeProvider>
     </View>
   );
 });

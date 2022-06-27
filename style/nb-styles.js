@@ -347,7 +347,7 @@ export default {
       h: 120,
       rounded: 20,
       borderWidth: 1,
-      borderColor: "primary.100",
+      borderColor: "primary.500",
       p: 3,
     },
   },

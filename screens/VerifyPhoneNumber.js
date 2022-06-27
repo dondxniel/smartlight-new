@@ -9,10 +9,10 @@ import VerifyPhoneNumberForm from "../components/VerifyPhoneNumberForm";
 const VerifyPhoneNumber = ({ navigation }) => {
   const login = useCallback(() => {
     navigation.navigate("login");
-  },[]);
+  }, []);
   return (
     <KeyboardAwareScrollView>
-      <View bg="primary.100" h={height}>
+      <View bg="primary.500" h={height}>
         <ImageBackground
           source={require("../assets/bg3.png")}
           style={{
