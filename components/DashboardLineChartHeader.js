@@ -32,7 +32,6 @@ const ChartLineHeader = ({ focusValue }) => {
         }}
         onValueChange={(itemValue) => setTimeFrame(itemValue)}
       >
-        <Select.Item label="All" value="all" />
         <Select.Item label="Daily" value="day" />
         <Select.Item label="Weekly" value="wk" />
         <Select.Item label="Monthly" value="mth" />

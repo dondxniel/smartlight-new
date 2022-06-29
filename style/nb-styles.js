@@ -163,7 +163,6 @@ export default {
 		paddingLeft: 5,
 		height: "auto",
 	},
-
 	onboardingImageContainer: {
 		backgroundColor: "#fff",
 		h: "60%",

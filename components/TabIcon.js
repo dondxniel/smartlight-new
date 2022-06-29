@@ -34,4 +34,5 @@ export const MeterTabIcon = memo(() => {
 			</PaymentTypeProvider>
 		</View>
 	);
+
 });

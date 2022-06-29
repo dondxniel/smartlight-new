@@ -73,7 +73,7 @@ function ProceedActions({ proceedActions }) {
                   >
                     <Center {...nbStyles.actionSheet.paymentMethod}>
                       {icon}
-                      <Heading mt={2} color={"primary.100"} size={"md"}>
+                      <Heading mt={2} color={"primary.500"} size={"md"}>
                         {type}
                       </Heading>
                     </Center>
