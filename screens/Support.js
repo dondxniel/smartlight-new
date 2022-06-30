@@ -1,13 +1,17 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "native-base";
-import HeadingWithBackButton from "../components/HeadingWithBackButton";
-import SupportForm from "../components/SupportForm";
+import { useNavigation } from "@react-navigation/native";
 
-export default function () {
-	return (
-		<View>
-			<HeadingWithBackButton title="Support" />
-			<SupportForm />
-		</View>
-	);
-}
+//components
+import SupportForm from "../components/SupportForm";
+import StickyHeader from "../components/StickyHeader";
+
+export default memo(function () {
+  const navigation = useNavigation();
+  return (
+    <View>
+      <StickyHeader headerTitle={"Support"} navigation={navigation} />
+      <SupportForm />
+    </View>
+  );
+});
