@@ -1,13 +1,17 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "native-base";
-import HeadingWithBackButton from "../components/HeadingWithBackButton.js";
-import EditProfileForm from "../components/EditProfileForm.js";
+import { useNavigation } from "@react-navigation/native";
 
-export default function () {
-	return (
-		<View>
-			<HeadingWithBackButton title="Edit Profile" />
-			<EditProfileForm />
-		</View>
-	);
-}
+//components
+import EditProfileForm from "../components/EditProfileForm.js";
+import StickyHeader from "../components/StickyHeader.js";
+
+export default memo(function () {
+  const navigation = useNavigation();
+  return (
+    <View>
+      <StickyHeader headerTitle={"Edit Profile"} navigation={navigation} />
+      <EditProfileForm />
+    </View>
+  );
+});
