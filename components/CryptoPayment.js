@@ -1,15 +1,17 @@
+/** @format */
+
 import React, { useCallback, useState } from "react";
 import {
-  Actionsheet,
-  Box,
-  Button,
-  Center,
-  Heading,
-  ScrollView,
-  Stack,
-  Text,
-  useDisclose,
-  View,
+	Actionsheet,
+	Box,
+	Button,
+	Center,
+	Heading,
+	ScrollView,
+	Stack,
+	Text,
+	useDisclose,
+	View,
 } from "native-base";
 import { useClipboard } from "@react-native-clipboard/clipboard";
 
@@ -24,93 +26,104 @@ import { PaymentPrompt } from "./PaymentPrompt";
 import { TouchableOpacity } from "react-native";
 
 const PaymentComponent = ({ isOpen, onClose }) => {
-  const {
-    state: { amount },
-  } = usePaymentType();
-  const paymentAction = useDisclose();
-  const [paymentPrompt, setPaymentPrompt] = useState("");
-  const [data, setString] = useClipboard();
-  const handlePayment = useCallback(() => {
-    onClose();
-    if (!true) {
-      setPaymentPrompt("successful");
-    } else {
-      setPaymentPrompt("unsuccesful");
-    }
-    paymentAction.onOpen();
-  }, []);
+	const {
+		state: { amount },
+	} = usePaymentType();
+	const paymentAction = useDisclose();
+	const [paymentPrompt, setPaymentPrompt] = useState("");
+	const [setString] = useClipboard();
+	const handlePayment = useCallback(() => {
+		onClose();
+		if (!true) {
+			setPaymentPrompt("successful");
+		} else {
+			setPaymentPrompt("unsuccesful");
+		}
+		paymentAction.onOpen();
+	}, []);
 
-  const handleCopy = useCallback(() => {
-    setString("0xF5D152C0C7....EAB3E8F");
-  }, []);
+	const handleCopy = useCallback(() => {
+		setString("0xF5D152C0C7....EAB3E8F");
+	}, []);
 
-  return (
-    <View>
-      <Actionsheet isOpen={isOpen} onClose={onClose}>
-        <Actionsheet.Content {...nbStyles.actionSheet.actionSheetContent}>
-          <ScrollView>
-            <Actionsheet.Item {...nbStyles.actionSheet.actionSheetItem}>
-              <Heading>Bank Transfer</Heading>
-              <Text mt={2}>
-                Send USDT to the address below for instant activation
-              </Text>
-            </Actionsheet.Item>
-            <Actionsheet.Item {...nbStyles.actionSheet.actionSheetItem}>
-              <Text>Amount</Text>
-              <Box width={width - 50} bgColor={"#fafafa"} rounded={"2xl"}>
-                <Heading size={"lg"} p={3}>
-                  {((amount - 100) / 419.5).toFixed(2)} USDT
-                </Heading>
-              </Box>
-              <Center width={width - 50}>
-                <CryptoQRCodeIcon />
-              </Center>
-              <Text>Account number</Text>
-              <Box
-                width={width - 50}
-                p={4}
-                my={1}
-                bgColor={"#fafafa"}
-                rounded={"2xl"}
-              >
-                <Stack
-                  alignItems={"center"}
-                  justifyContent={"space-between"}
-                  space={"lg"}
-                  flexDir={"row"}
-                >
-                  <TouchableOpacity onPress={handleCopy}>
-                    <Text>0xF5D152C0C7....EAB3E8F</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={handleCopy}>
-                    <Center>
-                      <CopyToClipIcon />
-                    </Center>
-                  </TouchableOpacity>
-                </Stack>
-              </Box>
-              <Button
-                mt={1}
-                _text={{ fontWeight: 500 }}
-                p={4}
-                colorScheme={"primary"}
-                width={"full"}
-                rounded={"2xl"}
-                onPress={handlePayment}
-              >
-                Done
-              </Button>
-            </Actionsheet.Item>
-          </ScrollView>
-        </Actionsheet.Content>
-      </Actionsheet>
-      <PaymentPrompt
-        prompt={paymentPrompt}
-        isOpen={paymentAction.isOpen}
-        onClose={paymentAction.onClose}
-      />
-    </View>
-  );
+	return (
+		<View>
+			<Actionsheet isOpen={isOpen} onClose={onClose}>
+				<Actionsheet.Content
+					{...nbStyles.actionSheet.actionSheetContent}
+				>
+					<ScrollView>
+						<Actionsheet.Item
+							{...nbStyles.actionSheet.actionSheetItem}
+						>
+							<Heading>Crypto Payment</Heading>
+							<Text mt={2}>
+								Send USDT to the address below for instant
+								activation
+							</Text>
+						</Actionsheet.Item>
+						<Actionsheet.Item
+							{...nbStyles.actionSheet.actionSheetItem}
+						>
+							<Text>Amount</Text>
+							<Box
+								width={width - 50}
+								bgColor={"#fafafa"}
+								rounded={"2xl"}
+							>
+								<Heading size={"lg"} p={3}>
+									{((amount - 100) / 419.5).toFixed(2)} USDT
+								</Heading>
+							</Box>
+							<Center width={width - 50}>
+								<CryptoQRCodeIcon />
+							</Center>
+							<Text>Account number</Text>
+							<Box
+								width={width - 50}
+								p={4}
+								my={1}
+								bgColor={"#fafafa"}
+								rounded={"2xl"}
+							>
+								<Stack
+									alignItems={"center"}
+									justifyContent={"space-between"}
+									space={"lg"}
+									flexDir={"row"}
+								>
+									<TouchableOpacity onPress={handleCopy}>
+										<Text>0xF5D152C0C7....EAB3E8F</Text>
+									</TouchableOpacity>
+									<TouchableOpacity onPress={handleCopy}>
+										<Center>
+											<CopyToClipIcon />
+										</Center>
+									</TouchableOpacity>
+								</Stack>
+							</Box>
+							<Button
+								mt={1}
+								_text={{ fontWeight: 500 }}
+								p={4}
+								colorScheme={"primary"}
+								width={"full"}
+								rounded={"2xl"}
+								onPress={handlePayment}
+							>
+								Done
+							</Button>
+						</Actionsheet.Item>
+					</ScrollView>
+				</Actionsheet.Content>
+			</Actionsheet>
+			<PaymentPrompt
+				prompt={paymentPrompt}
+				isOpen={paymentAction.isOpen}
+				onClose={paymentAction.onClose}
+			/>
+		</View>
+	);
 };
 
 export const CryptoPayment = React.memo(PaymentComponent);
