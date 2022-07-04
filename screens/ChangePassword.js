@@ -1,13 +1,17 @@
-import React from "react";
+import React, { memo } from "react";
 import { View } from "native-base";
-import HeadingWithBackButton from "../components/HeadingWithBackButton.js";
-import ChangePasswordForm from "../components/ChangePasswordForm.js";
+import { useNavigation } from "@react-navigation/native";
 
-export default function () {
-	return (
-		<View>
-			<HeadingWithBackButton title="Change Password" />
-			<ChangePasswordForm />
-		</View>
-	);
-}
+//components
+import ChangePasswordForm from "../components/ChangePasswordForm.js";
+import StickyHeader from "../components/StickyHeader.js";
+
+export default memo(function () {
+  const navigation = useNavigation();
+  return (
+    <View>
+      <StickyHeader headerTitle={"Change Password"} navigation={navigation} />
+      <ChangePasswordForm />
+    </View>
+  );
+});

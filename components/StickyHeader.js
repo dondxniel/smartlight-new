@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { Button, Heading, HStack } from "native-base";
 
 import nbStyles from "../style/nb-styles";
 //icons
 import SVGIconBack from "../assets/back.svg";
 
-const StickyHeader = (props) => {
+const StickyHeader = ({ navigation, headerTitle }) => {
   return (
     <HStack
       alignItems={"center"}
@@ -14,23 +14,23 @@ const StickyHeader = (props) => {
       py={0}
       bgColor={"warmGray.100"}
     >
-      {props.navigation && (
+      {navigation && (
         <Button
-          onPress={() => props.navigation.goBack()}
+          onPress={() => navigation.goBack()}
           h={10}
           w={10}
           bg={"#fff"}
           _pressed={{ bg: "transparent" }}
-          rounded={"xl"}
+          rounded={"lg"}
           shadow={1.99}
           style={{ shadowOpacity: 0.5 }}
         >
           <SVGIconBack />
         </Button>
       )}
-      <Heading {...nbStyles.notificationHeading}>{props.headerTitle}</Heading>
+      <Heading {...nbStyles.notificationHeading}>{headerTitle}</Heading>
     </HStack>
   );
 };
 
-export default StickyHeader;
+export default memo(StickyHeader);

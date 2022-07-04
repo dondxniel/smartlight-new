@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 
 //navigations
 import { Stack } from "./Root.stack";
@@ -11,72 +11,77 @@ import VerifyPhoneNumberScreen from "../../screens/VerifyPhoneNumber";
 import ForgotPassword from "../../screens/ForgotPassword";
 import Otp from "../../screens/Otp";
 import NewPassword from "../../screens/NewPassword";
+import { useSelector } from "react-redux";
 
 const BoardingStack = Stack;
 export default memo(function () {
-  return (
-    <BoardingStack.Navigator screenOptions={{ headerShown: false }}>
-      {/* --- first screen --- */}
-      <BoardingStack.Screen
-        name="onboarding"
-        children={(props) => <OnboardingScreen {...props} />}
-      />
+  const {firstLaunch} = useSelector(state => state.launched)
+	return (
+		<BoardingStack.Navigator
+			initialRouteName={firstLaunch ? "onboarding" : "login"}
+			screenOptions={{ headerShown: false }}
+		>
+			{/* --- first screen --- */}
+			<BoardingStack.Screen
+				name='onboarding'
+				component={OnboardingScreen}
+			/>
 
-      {/* --- second screen --- */}
+			{/* --- second screen --- */}
 
-      <BoardingStack.Screen
-        options={{
-          animation: "slide_from_bottom",
-          statusBarAnimation: "slide",
-        }}
-        name="login"
-        component={LoginScreen}
-      />
+			<BoardingStack.Screen
+				options={{
+					animation: "slide_from_bottom",
+					statusBarAnimation: "slide",
+				}}
+				name='login'
+				component={LoginScreen}
+			/>
 
-      {/* --- third screen --- */}
+			{/* --- third screen --- */}
 
-      <BoardingStack.Screen
-        options={{
-          animation: "slide_from_right",
-          statusBarAnimation: "slide",
-        }}
-        name="signup"
-        component={SignupScreen}
-      />
+			<BoardingStack.Screen
+				options={{
+					animation: "slide_from_right",
+					statusBarAnimation: "slide",
+				}}
+				name='signup'
+				component={SignupScreen}
+			/>
 
-      {/* --- fourth screen --- */}
+			{/* --- fourth screen --- */}
 
-      <BoardingStack.Screen
-        options={{
-          animation: "slide_from_left",
-        }}
-        name="verifyphonenumber"
-        children={(props) => <VerifyPhoneNumberScreen {...props} />}
-      />
+			<BoardingStack.Screen
+				options={{
+					animation: "slide_from_left",
+				}}
+				name='verifyphonenumber'
+				children={(props) => <VerifyPhoneNumberScreen {...props} />}
+			/>
 
-      {/* fifth screen */}
+			{/* fifth screen */}
 
-      <BoardingStack.Screen
-        options={{ animation: "slide_from_right" }}
-        name="forgot_password"
-        children={(props) => <ForgotPassword {...props} />}
-      />
+			<BoardingStack.Screen
+				options={{ animation: "slide_from_right" }}
+				name='forgot_password'
+				children={(props) => <ForgotPassword {...props} />}
+			/>
 
-      {/* sixth screen */}
+			{/* sixth screen */}
 
-      <BoardingStack.Screen
-        options={{ animation: "slide_from_right" }}
-        name="otp"
-        children={(props) => <Otp {...props} />}
-      />
+			<BoardingStack.Screen
+				options={{ animation: "slide_from_right" }}
+				name='otp'
+				children={(props) => <Otp {...props} />}
+			/>
 
-      {/* seventh screen */}
+			{/* seventh screen */}
 
-      <BoardingStack.Screen
-        options={{ animation: "slide_from_left" }}
-        name="new_password"
-        children={(props) => <NewPassword {...props} />}
-      />
-    </BoardingStack.Navigator>
-  );
+			<BoardingStack.Screen
+				options={{ animation: "slide_from_left" }}
+				name='new_password'
+				children={(props) => <NewPassword {...props} />}
+			/>
+		</BoardingStack.Navigator>
+	);
 });
