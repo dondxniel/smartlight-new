@@ -32,7 +32,7 @@ const PaymentComponent = ({ isOpen, onClose }) => {
 	} = usePaymentType();
 	const [paymentPrompt, setPaymentPrompt] = useState("");
 	const [visible, setVisible] = useState(false);
-	const [cardNo, setCardNo] = useState("1330 0000 0000 0000");
+	const [cardNum, setCardNum] = useState(undefined);
 	const [month, setMonth] = useState(undefined);
 	const [year, setYear] = useState(undefined);
 	const [cvv, setCVV] = useState(undefined);
@@ -108,11 +108,25 @@ const PaymentComponent = ({ isOpen, onClose }) => {
 								_focus={{ fontWeight: 500 }}
 								bgColor={"#fafafa"}
 								borderWidth={0}
+								size={"md"}
 								rounded={"2xl"}
 								keyboardType='numeric'
 								maxLength={19}
-								value={cardNo}
-								clearTextOnFocus={true}
+								letterSpacing={2}
+								placeholder={"1330 0000 0000 0000"}
+								value={cardNum}
+								onChangeText={(val) => setCardNum(val)}
+								rightElement={
+									cardNum && (
+										<Center mt={1}>
+											<IconButton
+												variant={"unstyled"}
+												onPress={() => setCardNum("")}
+												children={<Icon name='times' />}
+											/>
+										</Center>
+									)
+								}
 							/>
 						</Box>
 					</Actionsheet.Item>
@@ -132,8 +146,10 @@ const PaymentComponent = ({ isOpen, onClose }) => {
 									rounded={"2xl"}
 								>
 									<Input
-										w={12}
+										w={16}
 										variant={"unstyled"}
+										size={"md"}
+										letterSpacing={2}
 										ref={monthRef}
 										keyboardType='numeric'
 										returnKeyType='next'
@@ -154,8 +170,10 @@ const PaymentComponent = ({ isOpen, onClose }) => {
 									</Text>
 
 									<Input
-										w={12}
+										w={16}
 										variant={"unstyled"}
+										size={"md"}
+										letterSpacing={2}
 										ref={yearRef}
 										keyboardType='numeric'
 										returnKeyType='next'
@@ -173,7 +191,10 @@ const PaymentComponent = ({ isOpen, onClose }) => {
 								<Text color={"#212121"}>CVV</Text>
 								<Input
 									p={3}
-									width={100}
+									w={100}
+									variant={"unstyled"}
+									size={"md"}
+									letterSpacing={2}
 									ref={cvvRef}
 									keyboardType='numeric'
 									returnKeyType='default'
@@ -183,12 +204,15 @@ const PaymentComponent = ({ isOpen, onClose }) => {
 									type={visible ? "text" : "password"}
 									rightElement={
 										cvv && (
-											<IconButton
-												onPress={() =>
-													setVisible((prev) => !prev)
-												}
-												children={
-													<Center mt={1}>
+											<Center mt={1}>
+												<IconButton
+													variant={"unstyled"}
+													onPress={() =>
+														setVisible(
+															(prev) => !prev
+														)
+													}
+													children={
 														<Icon
 															size={10}
 															name={
@@ -197,9 +221,9 @@ const PaymentComponent = ({ isOpen, onClose }) => {
 																	: "eye"
 															}
 														/>
-													</Center>
-												}
-											/>
+													}
+												/>
+											</Center>
 										)
 									}
 									maxLength={3}
